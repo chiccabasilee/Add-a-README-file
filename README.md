@@ -1,11 +1,9 @@
-# Menù digitale · Black Sheep Menfi
+# Sito · Black Sheep Cocktail & Food Lab (Menfi)
 
-Pagina del menù raggiungibile dal QR code sui tavoli.
-
-- `menu.js`: il contenuto del menù (categorie, voci, prezzi, allergeni). Per cambiare un prezzo si modifica solo questo file.
-- `index.html`, `style.css`, `app.js`: pagina e grafica.
-- `assets/`: logo vettoriale (`logo.svg` nero, `logo-bianco.svg` per sfondi scuri, `marchio.svg` per QR e icona).
-- `qr/`: QR definitivo per `https://chiccabasilee.github.io/blacksheep-menu/` (`menu-qr.svg` per la tipografia, `menu-qr.png` 2000 px).
+- `index.html`: home del sito (il locale, menù, eventi, sala eventi, dove siamo).
+- `menu/`: pagina del menù. Il QR sui tavoli punta a `menu/#drink`, che apre direttamente la drink list.
+  - `menu/menu.js`: contenuto del menù (sezioni, categorie, voci, prezzi, allergeni). Per cambiare un prezzo si modifica solo questo file.
+- `style.css`: grafica comune alle due pagine.
+- `assets/`: logo vettoriale (`logo.svg` nero, `logo-bianco.svg` per sfondi scuri, `marchio.svg` per QR e icona), icone e font.
+  I font sono ospitati sul sito (licenza OFL), così non ci sono richieste a servizi esterni.
 - `tools/genera_qr.py`: genera il QR in SVG con il logo al centro (`pip install segno`, poi `python3 tools/genera_qr.py <indirizzo>`).
-
-Il QR punta sempre allo stesso indirizzo: aggiornando il menù non serve ristamparlo.
