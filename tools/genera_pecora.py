@@ -18,8 +18,8 @@ from shapely.ops import unary_union
 ROOT = Path(__file__).resolve().parent.parent
 NERO, CREMA = "#0d0d0d", "#f2efe9"
 TAGLIO = 8       # larghezza dei tagli tra le parti
-SMUSSO = 3       # raggio degli angoli
-TESTA = -10      # inclinazione della testa in gradi (negativo = muso in giù)
+SMUSSO = 1.2     # raggio degli angoli: basso, per restare spigolosa
+TESTA = -16      # inclinazione della testa in gradi (negativo = muso in giù)
 
 
 def orecchio(ox, oy, s):
@@ -28,41 +28,42 @@ def orecchio(ox, oy, s):
     return [(ox + (x - 700) * s, oy + (y - 320) * s) for x, y in pts]
 
 
-def ruota(pts, gradi, c=(385, 300)):
+def testa(pts, c=(385, 300), gradi=TESTA, scala=1.05, dx=10, dy=78):
+    # la testa si disegna attorno alla nuca, poi si inclina, si ingrandisce e si abbassa
     a = math.radians(gradi)
-    ca, sa = math.cos(a), math.sin(a)
-    return [(c[0] + (x - c[0]) * ca - (y - c[1]) * sa, c[1] + (x - c[0]) * sa + (y - c[1]) * ca) for x, y in pts]
+    ca, sa = math.cos(a) * scala, math.sin(a) * scala
+    return [(c[0] + dx + (x - c[0]) * ca - (y - c[1]) * sa,
+             c[1] + dy + (x - c[0]) * sa + (y - c[1]) * ca) for x, y in pts]
 
 
-def zampa(x0, top, bot, w=36, wb=24, ginocchio=0):
-    # affusolata, con un leggero angolo al ginocchio e lo zoccolo smussato davanti
-    k = top + (bot - top) * 0.55
-    wk = (w + wb) / 2 + 2
-    return [(x0, top), (x0 + w, top), (x0 + w - 6 - ginocchio, k), (x0 + w - 10, bot),
-            (x0 + w - 4 - wb, bot), (x0 + w - 10 - wb, bot - 8), (x0 + w - 6 - ginocchio - wk, k)]
+def zampa(x0, top, bot, w=54, wb=42):
+    # corta e robusta, con lo zoccolo a punta in avanti
+    return [(x0, top), (x0 + w, top), (x0 + w - 4, bot), (x0 - 8, bot), (x0 + 2, bot - 26)]
 
 
-# Dal fondo al primo piano: ogni parte viene staccata da quelle davanti
+# Dal fondo al primo piano: ogni parte viene staccata da quelle davanti.
+# Le zampe stanno dietro al vello, che le copre in alto con le sue punte.
 parti = [
-    zampa(752, 540, 788, ginocchio=-8),   # posteriore lontana
-    zampa(478, 540, 788, ginocchio=6),    # anteriore lontana
-    [(350, 330), (420, 290), (560, 272), (720, 277), (830, 312), (885, 392),
-     (880, 482), (830, 560), (700, 592), (470, 592), (385, 562), (345, 470)],   # corpo
-    zampa(712, 540, 800, ginocchio=-8),   # posteriore
-    zampa(432, 540, 800, ginocchio=6),    # anteriore
-    [(878, 420), (905, 438), (906, 500), (884, 512)],                         # coda
-    ruota(orecchio(400, 318, 0.8), TESTA / 2),
-    ruota([(162, 404), (200, 380), (382, 290), (398, 362), (322, 446),
-           (205, 474), (170, 460), (150, 433)], TESTA),                         # guancia e muso
-    ruota([(178, 392), (254, 246), (304, 224), (352, 230), (380, 268),
-           (376, 306), (326, 318)], TESTA),                                     # fronte e ciuffo
+    zampa(800, 560, 772),                 # posteriore lontana
+    zampa(500, 560, 772),                 # anteriore lontana
+    zampa(735, 560, 792),                 # posteriore
+    zampa(430, 560, 792),                 # anteriore
+    [(894, 436), (930, 470), (906, 536)],                                     # coda
+    [(370, 292), (440, 246), (570, 226), (712, 232), (812, 258), (876, 312),
+     (912, 420), (896, 520), (858, 604), (816, 662), (770, 614), (706, 670),
+     (648, 618), (574, 676), (510, 622), (444, 664), (396, 606), (356, 522),
+     (340, 420)],                                                             # corpo
+    testa(orecchio(400, 318, 0.8)),
+    testa([(146, 428), (200, 380), (382, 290), (398, 362), (322, 446), (198, 478)]),  # guancia e muso
+    testa([(178, 392), (250, 244), (306, 218), (354, 226), (382, 268),
+           (376, 306), (326, 318)]),                                          # fronte e ciuffo
 ]
-CORPO = 2
+CORPO = 5
 # Tagli a cuneo nel vello, larghi in alto e a punta in basso come la riga centrale del logo
 tagli_corpo = unary_union([
-    Polygon([(452, 282), (474, 280), (418, 528)]),
-    Polygon([(590, 262), (614, 262), (572, 575)]),
-    Polygon([(748, 268), (772, 276), (796, 548)]),
+    Polygon([(470, 236), (496, 232), (440, 560)]),
+    Polygon([(612, 222), (640, 222), (600, 600)]),
+    Polygon([(760, 240), (788, 248), (812, 590)]),
 ])
 
 forme = []
@@ -73,7 +74,7 @@ for i, pts in enumerate(parti):
         g = g.difference(davanti.buffer(TAGLIO, join_style="mitre"))
     if i == CORPO:
         g = g.difference(tagli_corpo)
-    g = g.buffer(-SMUSSO).buffer(SMUSSO).buffer(SMUSSO * 0.6).buffer(-SMUSSO * 0.6)
+    g = g.buffer(-SMUSSO).buffer(SMUSSO)
     forme.append(g)
 
 tutto = unary_union(forme)
