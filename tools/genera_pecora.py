@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 NERO, CREMA = "#0d0d0d", "#f2efe9"
 TAGLIO = 8       # larghezza dei tagli tra le parti
 SMUSSO = 1.2     # raggio degli angoli: basso, per restare spigolosa
-TESTA = -16      # inclinazione della testa in gradi (negativo = muso in giù)
+TESTA = -4       # inclinazione della testa in gradi (negativo = muso in giù)
 
 
 def orecchio(ox, oy, s):
@@ -28,42 +28,50 @@ def orecchio(ox, oy, s):
     return [(ox + (x - 700) * s, oy + (y - 320) * s) for x, y in pts]
 
 
-def testa(pts, c=(385, 300), gradi=TESTA, scala=1.05, dx=10, dy=78):
-    # la testa si disegna attorno alla nuca, poi si inclina, si ingrandisce e si abbassa
+def testa(pts, c=(385, 300), gradi=TESTA, scala=0.74, dx=-72, dy=30):
+    # la testa si disegna attorno alla nuca, poi si inclina, si scala e si sposta sul collo
     a = math.radians(gradi)
     ca, sa = math.cos(a) * scala, math.sin(a) * scala
     return [(c[0] + dx + (x - c[0]) * ca - (y - c[1]) * sa,
              c[1] + dy + (x - c[0]) * sa + (y - c[1]) * ca) for x, y in pts]
 
 
-def zampa(x0, top, bot, w=54, wb=42):
-    # corta e robusta, con lo zoccolo a punta in avanti
-    return [(x0, top), (x0 + w, top), (x0 + w - 4, bot), (x0 - 8, bot), (x0 + 2, bot - 26)]
+def anteriore(x, top, bot):
+    # dritta, con il ginocchio appena segnato e lo zoccolo a punta in avanti
+    k = top + (bot - top) * 0.5
+    return [(x, top), (x + 50, top), (x + 44, k), (x + 42, bot), (x + 4, bot),
+            (x - 4, bot - 20), (x + 6, k)]
+
+
+def posteriore(x, top, bot):
+    # coscia larga, garretto che piega all'indietro, stinco che torna in avanti
+    h = top + (bot - top) * 0.55
+    return [(x, top), (x + 86, top), (x + 90, h), (x + 64, bot), (x + 26, bot),
+            (x + 18, bot - 20), (x + 46, h), (x + 10, top + 60)]
 
 
 # Dal fondo al primo piano: ogni parte viene staccata da quelle davanti.
 # Le zampe stanno dietro al vello, che le copre in alto con le sue punte.
 parti = [
-    zampa(800, 560, 772),                 # posteriore lontana
-    zampa(500, 560, 772),                 # anteriore lontana
-    zampa(735, 560, 792),                 # posteriore
-    zampa(430, 560, 792),                 # anteriore
-    [(894, 436), (930, 470), (906, 536)],                                     # coda
-    [(370, 292), (440, 246), (570, 226), (712, 232), (812, 258), (876, 312),
-     (912, 420), (896, 520), (858, 604), (816, 662), (770, 614), (706, 670),
-     (648, 618), (574, 676), (510, 622), (444, 664), (396, 606), (356, 522),
-     (340, 420)],                                                             # corpo
+    posteriore(722, 540, 784),            # posteriore lontana
+    anteriore(468, 540, 784),             # anteriore lontana
+    posteriore(800, 540, 802),            # posteriore
+    anteriore(398, 540, 802),             # anteriore
+    [(300, 318), (380, 300), (520, 288), (700, 292), (830, 310), (895, 350),
+     (925, 440), (915, 520), (884, 588), (842, 616), (800, 592), (740, 620),
+     (690, 594), (620, 624), (560, 596), (500, 622), (440, 596), (380, 618),
+     (330, 582), (282, 524), (266, 460), (290, 396)],                        # corpo
     testa(orecchio(400, 318, 0.8)),
     testa([(146, 428), (200, 380), (382, 290), (398, 362), (322, 446), (198, 478)]),  # guancia e muso
     testa([(178, 392), (250, 244), (306, 218), (354, 226), (382, 268),
            (376, 306), (326, 318)]),                                          # fronte e ciuffo
 ]
-CORPO = 5
+CORPO = 4
 # Tagli a cuneo nel vello, larghi in alto e a punta in basso come la riga centrale del logo
 tagli_corpo = unary_union([
-    Polygon([(470, 236), (496, 232), (440, 560)]),
-    Polygon([(612, 222), (640, 222), (600, 600)]),
-    Polygon([(760, 240), (788, 248), (812, 590)]),
+    Polygon([(430, 292), (454, 290), (404, 560)]),
+    Polygon([(606, 284), (632, 284), (596, 590)]),
+    Polygon([(772, 298), (798, 304), (818, 580)]),
 ])
 
 forme = []
