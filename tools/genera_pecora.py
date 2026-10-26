@@ -50,46 +50,59 @@ def posteriore(x, top, bot):
             (x + 18, bot - 20), (x + 46, h), (x + 10, top + 60)]
 
 
-# Dal fondo al primo piano: ogni parte viene staccata da quelle davanti.
-# Le zampe stanno dietro al vello, che le copre in alto con le sue punte.
-parti = [
-    posteriore(722, 540, 784),            # posteriore lontana
-    anteriore(468, 540, 784),             # anteriore lontana
-    posteriore(800, 540, 802),            # posteriore
-    anteriore(398, 540, 802),             # anteriore
-    [(300, 318), (380, 300), (520, 288), (700, 292), (830, 310), (895, 350),
-     (925, 440), (915, 520), (884, 588), (842, 616), (800, 592), (740, 620),
-     (690, 594), (620, 624), (560, 596), (500, 622), (440, 596), (380, 618),
-     (330, 582), (282, 524), (266, 460), (290, 396)],                        # corpo
-    testa(orecchio(400, 318, 0.8)),
-    testa([(146, 428), (200, 380), (382, 290), (398, 362), (322, 446), (198, 478)]),  # guancia e muso
-    testa([(178, 392), (250, 244), (306, 218), (354, 226), (382, 268),
-           (376, 306), (326, 318)]),                                          # fronte e ciuffo
-]
-CORPO = 4
+def ruota(pts, gradi, c):
+    a = math.radians(gradi)
+    ca, sa = math.cos(a), math.sin(a)
+    return [(c[0] + (x - c[0]) * ca - (y - c[1]) * sa, c[1] + (x - c[0]) * sa + (y - c[1]) * ca) for x, y in pts]
+
+
 # Tagli a cuneo nel vello, larghi in alto e a punta in basso come la riga centrale del logo
-tagli_corpo = unary_union([
-    Polygon([(430, 292), (454, 290), (404, 560)]),
-    Polygon([(606, 284), (632, 284), (596, 590)]),
-    Polygon([(772, 298), (798, 304), (818, 580)]),
-])
-
-forme = []
-for i, pts in enumerate(parti):
-    g = Polygon(pts)
-    davanti = unary_union([Polygon(q) for q in parti[i + 1:]])
-    if not davanti.is_empty:
-        g = g.difference(davanti.buffer(TAGLIO, join_style="mitre"))
-    if i == CORPO:
-        g = g.difference(tagli_corpo)
-    g = g.buffer(-SMUSSO).buffer(SMUSSO)
-    forme.append(g)
-
-tutto = unary_union(forme)
-x0, y0, x1, y1 = tutto.bounds
+TAGLI_CORPO = [
+    [(430, 292), (454, 290), (404, 560)],
+    [(606, 284), (632, 284), (596, 590)],
+    [(772, 298), (798, 304), (818, 580)],
+]
+CENTRO = (600, 460)
 
 
-def tracciato(dx, dy, s):
+def forme_pecora(ant=0, post=0, inclina=0):
+    """Le parti della pecora, già staccate e smussate.
+
+    ant e post ruotano le zampe anteriori e posteriori attorno all'attaccatura
+    (gradi, positivo = zoccolo in avanti); inclina ruota tutta la pecora
+    (positivo = muso in su). Con tutto a zero è la pecora ferma.
+    """
+    # Dal fondo al primo piano: ogni parte viene staccata da quelle davanti.
+    # Le zampe stanno dietro al vello, che le copre in alto con le sue punte.
+    parti = [
+        ruota(posteriore(722, 540, 784), post * 0.8, (765, 560)),   # posteriore lontana
+        ruota(anteriore(468, 540, 784), ant * 0.8, (493, 560)),     # anteriore lontana
+        ruota(posteriore(800, 540, 802), post, (843, 560)),         # posteriore
+        ruota(anteriore(398, 540, 802), ant, (423, 560)),           # anteriore
+        [(300, 318), (380, 300), (520, 288), (700, 292), (830, 310), (895, 350),
+         (925, 440), (915, 520), (884, 588), (842, 616), (800, 592), (740, 620),
+         (690, 594), (620, 624), (560, 596), (500, 622), (440, 596), (380, 618),
+         (330, 582), (282, 524), (266, 460), (290, 396)],                    # corpo
+        testa(orecchio(400, 318, 0.8)),
+        testa([(146, 428), (200, 380), (382, 290), (398, 362), (322, 446), (198, 478)]),  # guancia e muso
+        testa([(178, 392), (250, 244), (306, 218), (354, 226), (382, 268),
+               (376, 306), (326, 318)]),                                      # fronte e ciuffo
+    ]
+    parti = [ruota(p, inclina, CENTRO) for p in parti]
+    tagli = unary_union([Polygon(ruota(t, inclina, CENTRO)) for t in TAGLI_CORPO])
+    forme = []
+    for i, pts in enumerate(parti):
+        g = Polygon(pts)
+        davanti = unary_union([Polygon(q) for q in parti[i + 1:]])
+        if not davanti.is_empty:
+            g = g.difference(davanti.buffer(TAGLIO, join_style="mitre"))
+        if i == 4:  # corpo
+            g = g.difference(tagli)
+        forme.append(g.buffer(-SMUSSO).buffer(SMUSSO))
+    return forme
+
+
+def tracciato(forme, dx=0, dy=0, s=1):
     d = []
     for g in forme:
         for poly in getattr(g, "geoms", [g]):
@@ -99,20 +112,24 @@ def tracciato(dx, dy, s):
     return "".join(d)
 
 
-# Pecora da sola, con un piccolo margine
-m = 10
-w, h = x1 - x0 + 2 * m, y1 - y0 + 2 * m
-d = tracciato(x0 - m, y0 - m, 1)
-for nome, colore in [("pecora.svg", NERO), ("pecora-bianco.svg", CREMA)]:
-    (ROOT / "assets" / nome).write_text(
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" role="img" '
-        f'aria-label="Black Sheep"><path fill="{colore}" d="{d}"/></svg>\n')
+if __name__ == "__main__":
+    forme = forme_pecora()
+    x0, y0, x1, y1 = unary_union(forme).bounds
 
-# Marchio: pecora crema centrata in un cerchio nero di 1000
-s = 640 / (x1 - x0)
-cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-d = tracciato(cx - 500 / s, cy - 500 / s, s)
-(ROOT / "assets" / "pecora-marchio.svg").write_text(
-    f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Black Sheep">'
-    f'<circle cx="500" cy="500" r="500" fill="{NERO}"/><path fill="{CREMA}" d="{d}"/></svg>\n')
-print("Creati pecora.svg, pecora-bianco.svg, pecora-marchio.svg in assets/")
+    # Pecora da sola, con un piccolo margine
+    m = 10
+    w, h = x1 - x0 + 2 * m, y1 - y0 + 2 * m
+    d = tracciato(forme, x0 - m, y0 - m, 1)
+    for nome, colore in [("pecora.svg", NERO), ("pecora-bianco.svg", CREMA)]:
+        (ROOT / "assets" / nome).write_text(
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" role="img" '
+            f'aria-label="Black Sheep"><path fill="{colore}" d="{d}"/></svg>\n')
+
+    # Marchio: pecora crema centrata in un cerchio nero di 1000
+    s = 640 / (x1 - x0)
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    d = tracciato(forme, cx - 500 / s, cy - 500 / s, s)
+    (ROOT / "assets" / "pecora-marchio.svg").write_text(
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Black Sheep">'
+        f'<circle cx="500" cy="500" r="500" fill="{NERO}"/><path fill="{CREMA}" d="{d}"/></svg>\n')
+    print("Creati pecora.svg, pecora-bianco.svg, pecora-marchio.svg in assets/")
