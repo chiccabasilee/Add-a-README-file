@@ -28,20 +28,8 @@ a { color: inherit; }
   text-align: center;
   padding: calc(48px + env(safe-area-inset-top)) 24px 32px;
 }
-.hero__logo { display: block; margin: 0 auto 20px; width: 132px; height: 132px; }
-.hero__title {
-  margin: 0;
-  font: 600 2.4rem/1 var(--display);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-.hero__sub {
-  margin: 12px 0 0;
-  font: 400 .8rem/1.4 var(--display);
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+.hero__title { margin: 0; }
+.hero__logo { display: block; margin: 0 auto; width: min(260px, 70vw); height: auto; }
 .hero__motto { margin: 20px 0 0; font-style: italic; color: var(--muted); font-size: .9rem; }
 
 .preview {

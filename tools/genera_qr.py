@@ -33,7 +33,7 @@ for y, row in enumerate(matrix):
         if v and not (c0 - 1 <= x <= c1 and c0 - 1 <= y <= c1):
             d.append(f"M{x + quiet} {y + quiet}h1v1h-1z")
 
-logo = (ROOT / "assets" / "logo.svg").read_text()
+logo = (ROOT / "assets" / "marchio.svg").read_text()
 logo_inner = re.search(r"<svg[^>]*>(.*)</svg>", logo, re.S).group(1)
 cx = quiet + n / 2
 scale = logo_mod / 1000
