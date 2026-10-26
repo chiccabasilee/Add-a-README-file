@@ -7,7 +7,7 @@ l'oggetto al centro ed escono a destra, galoppando a scatti (16 fotogrammi al
 secondo, come un vecchio videogioco). L'oggetto cambia a ogni salto ed è sempre
 un simbolo del bar lab. Sotto, la scritta LOADING e una barra a blocchi che
 si riempie a ogni salto; l'ultimo blocco resta vuoto e lampeggia: stiamo per aprire.
-Il ciclo si ripete senza stacchi. GIF e video si fanno da questa pagina con
+Il ciclo si ripete senza stacchi. Tema nero di base, crema con ?tema=chiaro. GIF e video si fanno da questa pagina con
 tools/registra_loading.js.
 Richiede: pip install shapely
 """
@@ -50,7 +50,7 @@ x0, y0, x1, y1 = unary_union(forme["ferma"]).bounds
 cx = (x0 + x1) / 2
 s = LARGHEZZA / (x1 - x0)
 posa_svg = "".join(
-    f'<path id="p-{n}" fill="{CREMA}" transform="translate(0 {(y1 - fondo[n]):.1f})" '
+    f'<path id="p-{n}" fill="currentColor" transform="translate(0 {(y1 - fondo[n]):.1f})" '
     f'd="{tracciato(forme[n])}"/>' for n in nomi)
 
 
@@ -190,10 +190,10 @@ for f in range(CICLO):
     fotogrammi.append({"s": pecore, "o": oggetto, "b": pieni})
 
 ostacoli_svg = "".join(
-    f'<path id="o-{i}" fill="{CREMA}" transform="translate({CENTRO} {TERRA})" '
+    f'<path id="o-{i}" fill="currentColor" transform="translate({CENTRO} {TERRA})" '
     f'd="{tracciato(OGGETTI[o])}"/>' for i, o in enumerate(ORDINE))
 pecore_svg = "".join(
-    f'<rect id="ombra-{k}" y="{TERRA + 8}" height="14" fill="#2a2a2a"/>'
+    f'<rect id="ombra-{k}" class="ombra" y="{TERRA + 8}" height="14"/>'
     f'<g id="g-{k}"><use id="u-{k}" href="#p-ferma"/></g>' for k in range(len(ORDINE)))
 
 pagina = f"""<!doctype html>
@@ -205,9 +205,13 @@ pagina = f"""<!doctype html>
 <style>
   @font-face {{ font-family: "Oswald"; font-weight: 600; font-display: block;
     src: url("../assets/fonts/oswald-latin-600-normal.woff2") format("woff2"); }}
-  html, body {{ margin: 0; height: 100%; background: {NERO}; }}
+  /* Tema nero di base; con ?tema=chiaro sfondo crema e pecore nere */
+  :root {{ --sfondo: {NERO}; --segno: {CREMA}; --spento: #2a2a2a; --lampo: #9a958d; }}
+  :root.chiaro {{ --sfondo: {CREMA}; --segno: {NERO}; --spento: #d6d1c8; --lampo: #9a958d; }}
+  html, body {{ margin: 0; height: 100%; background: var(--sfondo); }}
   body {{ display: grid; place-items: center; overflow: hidden; }}
-  svg {{ width: min(100vw, 100vh); height: auto; display: block; }}
+  svg {{ width: min(100vw, 100vh); height: auto; display: block; color: var(--segno); }}
+  .ombra {{ fill: var(--spento); }}
 </style>
 </head>
 <body>
@@ -216,14 +220,16 @@ pagina = f"""<!doctype html>
   {ostacoli_svg}
   {pecore_svg}
   <!-- x spostato di metà spaziatura: la spaziatura aggiunge aria anche dopo l'ultima lettera -->
-  <text id="parola" x="547" y="760" text-anchor="middle" fill="{CREMA}" font-family="Oswald, Impact, sans-serif"
+  <text id="parola" x="547" y="760" text-anchor="middle" fill="currentColor" font-family="Oswald, Impact, sans-serif"
         font-weight="600" font-size="58" letter-spacing="14">LOADING</text>
-  <rect id="d1" y="749" width="11" height="11" fill="{CREMA}"/>
-  <rect id="d2" y="749" width="11" height="11" fill="{CREMA}"/>
-  <rect id="d3" y="749" width="11" height="11" fill="{CREMA}"/>
+  <rect id="d1" y="749" width="11" height="11" fill="currentColor"/>
+  <rect id="d2" y="749" width="11" height="11" fill="currentColor"/>
+  <rect id="d3" y="749" width="11" height="11" fill="currentColor"/>
   <g id="barra"></g>
 </svg>
 <script>
+if (location.search.includes("tema=chiaro")) document.documentElement.classList.add("chiaro");
+const colore = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const FPS = {FPS}, F = {json.dumps(fotogrammi, separators=(",", ":"))};
 const BLOCCHI = {BLOCCHI}, PECORE = {len(ORDINE)};
 const TOTALE = F.length, $ = id => document.getElementById(id);
@@ -255,7 +261,7 @@ function disegna(f) {{
   for (let i = 0; i < PECORE; i++) $("o-" + i).style.display = i === o ? "" : "none";
   const lampo = Math.floor(f / 4) % 2 === 0;
   blocchi.forEach((r, i) => r.setAttribute("fill",
-    i < b ? "{CREMA}" : (i === BLOCCHI - 1 && lampo ? "#9a958d" : "#2a2a2a")));
+    colore(i < b ? "--segno" : (i === BLOCCHI - 1 && lampo ? "--lampo" : "--spento"))));
   // puntini quadrati dopo la parola, uno in più ogni 4 fotogrammi
   const punti = Math.floor(f / 4) % 4, bb = $("parola").getBBox();
   [1, 2, 3].forEach(i => {{

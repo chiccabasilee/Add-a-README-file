@@ -82,7 +82,8 @@
   - Il QR definitivo **non è ancora stato generato**: si fa quando il dominio è scelto.
 - `motion/`: animazione "loading" per annunciare l'apertura, stile vecchio videogioco (16 fotogrammi al secondo). Su sfondo nero, come le pecore che si contano per dormire, pecore crema entrano una dopo l'altra da sinistra, saltano **un solo oggetto al centro** ed escono a destra. L'oggetto cambia a ogni salto, solo simboli da bar lab: coppetta, shaker, beuta, pinta, bottiglia, fetta di limone (lo steccato è stato tolto su richiesta del cliente). Sotto, LOADING e una barra che si accende di un blocco a ogni salto; l'ultimo blocco lampeggia. Il ciclo (9,8 s) si ripete senza stacchi. Niente numeri (tolti su richiesta del cliente).
   - `loading.html` si crea con `tools/genera_loading.py`, che usa le pose di `forme_pecora()` in `tools/genera_pecora.py`.
-  - `loading.gif` (720×720), `loading-quadrato.mp4` (1080×1080) e `loading-storia.mp4` (1080×1920) si registrano con `node tools/registra_loading.js`. La GIF è ancora una prova da far approvare.
+  - Due temi: nero di base, crema con pecore nere aprendo `loading.html?tema=chiaro`.
+  - `node tools/registra_loading.js` crea i video per i post Instagram, 1080×1080, 32 fps (ogni fotogramma resta fermo due volte): `loading-post-nero.mp4` e `loading-post-bianco.mp4`, mandati al cliente per scegliere il tema. Crea anche `loading.gif` (720×720) e `loading-storia.mp4` (1080×1920), entrambi a tema nero.
 - `social/instagram-profilo.png`: foto profilo Instagram 1080×1080, già consegnata.
   - Logo bianco senza semicerchi, centrato, su ardesia scurita.
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
