@@ -29,11 +29,13 @@
 - **Obiettivo**: posizionarlo come **locale di qualità, aperto dal pomeriggio**.
 - **Conseguenza per l'identità**: evitare tutti i codici da discoteca e da "serata" (neon, flyer da party, estetica da club). La comunicazione deve vendere il pomeriggio, l'aperitivo e il drink fatto bene, con le serate come conseguenza e non come identità.
 
+## Persone
+- **Giacomo**: proprietario e bartender. Quest'anno con lui c'è **Domenico**. Il 2 novembre si fanno i loro ritratti e una piccola intervista.
+
 ## Foto
 - Le scatta un **fotografo**, già istruito dal cliente su stile e soggetti. Le ispirazioni arrivano in un messaggio successivo.
 
 ## Ancora da sapere
-- Nome del proprietario e bartender.
 - Orari (aperitivo da che ora?).
 - Concorrenti nei dintorni.
 - Tre parole sì e tre no; riferimenti fuori dal mondo dei bar.

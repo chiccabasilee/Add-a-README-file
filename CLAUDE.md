@@ -10,7 +10,8 @@
 - Storia scritta dal cliente: Black Sheep nasce per "uscire dagli schemi" in un territorio dove la mixology è agli inizi; non solo bere un drink, ma un'esperienza di ricerca, creatività, gusto e condivisione.
 - Tono di voce: amichevole, cool, non serioso.
 - Spazio: antracite, **pareti verdi**, **griglia di alluminio a quadratini** sul bancone che regge le piante.
-- Aperitivo ogni giorno; drink card aggiornata con drink speciali del proprietario, bartender esperto. Il sabato aperitivo e poi dj set.
+- Aperitivo ogni giorno; drink card aggiornata con drink speciali del proprietario **Giacomo**, bartender esperto, quest'anno affiancato da **Domenico**. Il sabato aperitivo e poi dj set.
+- **2 novembre**: servizio fotografico (locale, drink e ritratti di Giacomo e Domenico) e piccola intervista ai due. Il sito va imbastito ora e corretto man mano.
 - Pubblico 25–40 anni che vuole bere bene in un posto amichevole.
 - **Riposizionamento**: l'anno scorso era visto come discoteca solo per un'ora a notte nel weekend; ora deve essere un locale di qualità aperto dal pomeriggio. Evitare i codici da discoteca.
 - Le foto le fa un fotografo già istruito dal cliente; le ispirazioni sono in arrivo.
@@ -64,7 +65,8 @@
 ## Stato del codice
 - Repository `chiccabasilee/Add-a-README-file`, branch `claude/qr-code-restaurant-menu-2vl2hr`.
 - Pubblicazione prevista su GitHub Pages con il dominio personalizzato.
-- `index.html` (home): apertura su ardesia con logo e due nastri inclinati, **storia**, nastri, **luogo**, **drink list**, **food della settimana**, pecora, fondo pagina crema.
+- `index.html` (home): apertura su ardesia con logo e due nastri inclinati, **storia**, **dietro al banco** (Giacomo e Domenico), nastri, **luogo**, **drink list**, **food della settimana**, pecora, fondo pagina crema.
+  - La storia è il testo del cliente sistemato nel tono (proposto in chat, il cliente ha chiesto di imbastire e correggere strada facendo). Claim corto: "Uscire dagli schemi, un drink alla volta".
   - Il food della settimana in home è letto da `menu/menu.js`, quindi si aggiorna in un posto solo.
   - I testi sono bozze scritte senza informazioni dal cliente; le foto sono riquadri segnaposto.
 - `site.js`: riempie i nastri che scorrono, gestisce il menu a tendina su telefono e mostra il food in home.
@@ -88,7 +90,7 @@
    - un foglio Google che il sito legge da solo (consigliata);
    - il cliente manda il menu e lo aggiorna Claude.
 3. Menu vero: drink e food, prezzi, coperto, allergeni, surgelati.
-4. La storia vera del locale.
+4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).
 5. Foto: locale, bancone, drink, sala eventi, locandine degli eventi.
 6. Orari di apertura.
 7. Partita IVA, obbligatoria sul sito di un'attività.

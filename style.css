@@ -396,3 +396,16 @@ img { max-width: 100%; }
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Testi di racconto (storia, banco, luogo) */
+.story { font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6; max-width: 46ch; }
+.story p { margin: 0 0 1em; }
+.story h3 { margin: 1.6em 0 .4em; font: 400 clamp(1.6rem, 3vw, 2.2rem)/1 var(--poster); text-transform: uppercase; letter-spacing: .02em; }
+.collage__d.story { text-shadow: 0 2px 14px rgba(0,0,0,.85); }
+.story--wide { margin-top: 40px; max-width: 58ch; }
+
+.person { margin: 0; }
+.person .ph { aspect-ratio: 4 / 5; }
+.person figcaption { margin-top: 14px; font: 400 2rem/1 var(--poster); text-transform: uppercase; letter-spacing: .02em; }
+.pair .person:nth-child(2) { margin-top: 12%; }
+@media (max-width: 759px) { .pair .person { width: 82%; } .pair .person:nth-child(2) { margin: -10% 0 0 auto; } .pair .person .ph { width: 100%; margin: 0; } }
