@@ -18,8 +18,11 @@
 
 ## Obiettivo
 - Sito completo su un dominio proprio, che il locale comprerà (per esempio blacksheepmenfi.it).
-- QR sui tavoli che porta direttamente alla drink list: `https://<dominio>/menu/#drink`.
-- Sezioni richieste: **la storia**, **il luogo**, **drink list**, **menu food che cambia ogni settimana**.
+- QR sui tavoli che porta direttamente alla drink list: `https://<dominio>/drink/`.
+- **Struttura decisa dal cliente**: tre pagine che si aprono dal menu ad hamburger: **Home**, **Storia**, **Drink list**.
+  - Tolte le pagine Food (il menu food settimanale non va sul sito) e Sabato.
+  - **Il luogo** sta in fondo a ogni pagina, con indirizzo, orari, telefono **per prenotare** e Instagram. I contatti sono ancora da definire meglio.
+- Il cliente vorrebbe vedere il sito come artefatto di Claude: non si pubblica perché porta nome e logo di un'attività reale. Si lavora sui file e si mandano anteprime.
 - Stile **molto grafico**, sul modello di https://www.freniefrizioni.com/bar/ (dominio ora consentito nella rete dell'ambiente). Da lì abbiamo preso:
   - nero più un solo colore (loro giallo, noi crema);
   - nastri che scorrono, anche inclinati sopra la foto d'apertura;
@@ -69,11 +72,11 @@
   - La storia è il testo del cliente sistemato nel tono (proposto in chat, il cliente ha chiesto di imbastire e correggere strada facendo). Claim corto: "Uscire dagli schemi, un drink alla volta".
   - Il food della settimana in home è letto da `menu/menu.js`, quindi si aggiorna in un posto solo.
   - I testi sono bozze scritte senza informazioni dal cliente; le foto sono riquadri segnaposto.
-- `site.js`: riempie i nastri che scorrono, gestisce il menu a tendina su telefono e mostra il food in home.
-- `menu/`: pagina del menù pensata per il telefono, prima la drink list e poi il food.
-  - Il contenuto sta in `menu/menu.js`, che per ora ha voci di esempio e `anteprima: true`. La sezione food ha il campo `settimana` con le date.
-  - Barra delle categorie fissa in alto.
-  - Legenda dei 14 allergeni (Reg. UE 1169/2011), nota sui surgelati, coperto.
+- `site.js`: riempie i nastri che scorrono e apre/chiude il menu ad hamburger (anche con Esc).
+- `drink/`: pagina della drink list, pensata per il telefono (ci arriva il QR).
+  - Il contenuto sta in `drink/menu.js`, che per ora ha voci di esempio e `anteprima: true`.
+  - Barra delle categorie fissa sotto la barra del sito.
+  - Legenda dei 14 allergeni (Reg. UE 1169/2011) e coperto.
 - `style.css`: grafica comune alle pagine.
 - `tools/genera_qr.py`: crea il QR in SVG (libreria segno) con `marchio.svg` al centro e correzione d'errore H. Le prove di lettura con OpenCV vanno bene fino a 110 px.
   - Il QR definitivo **non è ancora stato generato**: si fa quando il dominio è scelto.
@@ -85,11 +88,9 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Parere sulla nuova grafica (fatta sul modello di Freni e Frizioni).
-2. Chi aggiorna il food ogni settimana. Due proposte:
-   - un foglio Google che il sito legge da solo (consigliata);
-   - il cliente manda il menu e lo aggiorna Claude.
-3. Menu vero: drink e food, prezzi, coperto, allergeni, surgelati.
+1. Ispirazioni (del cliente e del fotografo) per la fase 3: tre direzioni creative con font e stile generale.
+2. Drink list vera: drink, prezzi, coperto, allergeni.
+3. Come gestire i contatti (per ora: telefono per prenotare).
 4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).
 5. Foto: locale, bancone, drink, sala eventi, locandine degli eventi.
 6. Orari di apertura.

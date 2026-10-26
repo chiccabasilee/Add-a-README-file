@@ -1,6 +1,6 @@
 """Genera il QR del menu con il logo al centro.
 
-Uso:  python3 tools/genera_qr.py https://indirizzo-del-menu [cartella_output]
+Uso:  python3 tools/genera_qr.py https://<dominio>/drink/ [cartella_output]
 Crea menu-qr.svg, vettoriale: va bene per qualsiasi dimensione di stampa.
 Richiede: pip install segno
 """
