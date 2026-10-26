@@ -31,15 +31,24 @@
   - Area di rispetto X = altezza della B di BLACK (11,4% del logo). Il payoff è alto la metà di X: il logo completo si legge fino a circa 110 px di altezza (25 mm in stampa); la testa da sola regge fino a 16 px.
   - Angoli della testa: quasi verticali, inclinati di 5–15° (il muso converge); tetto a ±30–40°; orecchie a ±15°.
   - Tre linguaggi nel logo: testa geometrica e precisa, archi a pennello secco, scritta a mano. Il sistema non deve aggiungere una quarta voce espressiva.
-- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (fatta, da discutere), 3 tre direzioni creative, 4 sviluppo della direzione scelta.
+- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (**approvata**), 3 tre direzioni creative, 4 sviluppo della direzione scelta.
+  - Indicazione del cliente per la fase 3: andare oltre gli spunti ricavati dal logo, verso qualcosa di **più originale e con un effetto grafico molto forte**.
 - **Regole d'uso del logo (decise dal cliente)**:
   - Il disegno del logo non si modifica né si reinterpreta: il sistema grafico si adatta intorno a lui.
   - Le versioni create in questo progetto restano tutte valide e non vanno cancellate.
   - **Sul sito si usa il logo completo, con gli archi** (`logo.svg` / `logo-bianco.svg`).
   - **Il logo senza archi si usa solo per la foto profilo Instagram.**
-  - Il cliente permette di giocare con il logo (togliere gli archi, usare solo la scritta), ma di norma scritta e testa vanno insieme. Il cliente chiama la testa "di capra": va chiarito se è una pecora o una capra.
-  - Da chiarire: se `marchio.svg` può restare come piccolo segno nel sito (icona del browser, barra in alto, fondo pagina) e al centro del QR, e come va usata la pecora intera.
-- **Colori**: sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
+  - Il cliente permette di giocare con il logo (togliere gli archi, usare solo la scritta), ma di norma scritta e testa vanno insieme.
+  - L'animale è **una pecora** (confermato): chiamarla sempre così.
+  - **Configurazioni approvate**:
+    - completo: sito, insegna, copertina del menu, materiali principali;
+    - senza archi: solo foto profilo Instagram;
+    - solo scritta: spazi orizzontali e stretti (barra del sito, fondo pagina, scontrini, intestazioni);
+    - solo testa: usi piccoli e "da firma" (icona del browser, QR, timbri, sottobicchieri, adesivi, ghiaccio stampato).
+  - **Colori del logo approvati**: nero e bianco sono i colori principali; anche l'antracite, che è il colore di tutto il locale.
+  - Da chiarire: come va usata la pecora intera di profilo (personaggio/illustrazione, mai come secondo marchio).
+- **Colori** (sito attuale, da rivedere nella fase 3): sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
+  - Antracite misurata sulle superfici: ardesia `#4c4c4c` in originale, `#353535` scurita del 30%. L'intonaco della prima foto è più caldo, circa `#574a38`.
 - **Font**: Anton per i titoli da manifesto, Oswald per menu ed etichette (maiuscolo, spaziato), Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
 - **Texture**: ardesia antracite, scurita del 30% circa. Sul sito è `assets/ardesia.jpg`, una piastrella specchiata 1000×2000 fatta dall'originale 500×1000: con la versione ad alta risoluzione sparirebbe l'effetto specchio ai lati.
 
