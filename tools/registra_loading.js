@@ -1,9 +1,12 @@
 // Registra motion/loading.html in video MP4, fotogramma per fotogramma.
 //
-// Uso:  node tools/registra_loading.js
-// Crea i video per i post Instagram (1080×1080) nei due temi, motion/loading-post-nero.mp4
-// e motion/loading-post-bianco.mp4, poi motion/loading.gif (720×720, tema nero) e
-// motion/loading-storia.mp4 (1080×1920, storie e reel, tema nero).
+// Uso:  node tools/registra_loading.js [formati...]
+// Crea i video per i post Instagram nei due temi: quadrati (1080×1080),
+// motion/loading-post-nero.mp4 e motion/loading-post-bianco.mp4, e verticali 4:5
+// (1080×1350), motion/loading-post-4x5-nero.mp4 e motion/loading-post-4x5-bianco.mp4.
+// Poi motion/loading.gif (720×720, tema nero) e motion/loading-storia.mp4
+// (1080×1920, storie e reel, tema nero).
+// Con dei nomi registra solo quei formati, per esempio: post-4x5-nero post-4x5-bianco
 // Richiede: playwright con Chromium e ffmpeg.
 const { chromium } = require("playwright");
 const { execFileSync } = require("child_process");
@@ -13,8 +16,11 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 const pagina = "file://" + path.join(ROOT, "motion", "loading.html") + "?registra";
-const formati = [["post-nero", 1080, 1080, ""], ["post-bianco", 1080, 1080, "&tema=chiaro"],
-                 ["storia", 1080, 1920, ""]];
+const tutti = [["post-nero", 1080, 1080, ""], ["post-bianco", 1080, 1080, "&tema=chiaro"],
+               ["post-4x5-nero", 1080, 1350, ""], ["post-4x5-bianco", 1080, 1350, "&tema=chiaro"],
+               ["storia", 1080, 1920, ""]];
+const scelti = process.argv.slice(2);
+const formati = scelti.length ? tutti.filter(([nome]) => scelti.includes(nome)) : tutti;
 const GIRI = 2; // il video ripete l'animazione due volte
 
 (async () => {
