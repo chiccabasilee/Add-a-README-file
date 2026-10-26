@@ -6,6 +6,15 @@
 - Instagram: @black_sheep_menfi
 - Telefono 329 773 0197, preso dalla storia "sala eventi". **Da confermare.**
 
+## Brief (dettagli in `brand/brief.md`)
+- Storia scritta dal cliente: Black Sheep nasce per "uscire dagli schemi" in un territorio dove la mixology è agli inizi; non solo bere un drink, ma un'esperienza di ricerca, creatività, gusto e condivisione.
+- Tono di voce: amichevole, cool, non serioso.
+- Spazio: antracite, **pareti verdi**, **griglia di alluminio a quadratini** sul bancone che regge le piante.
+- Aperitivo ogni giorno; drink card aggiornata con drink speciali del proprietario, bartender esperto. Il sabato aperitivo e poi dj set.
+- Pubblico 25–40 anni che vuole bere bene in un posto amichevole.
+- **Riposizionamento**: l'anno scorso era visto come discoteca solo per un'ora a notte nel weekend; ora deve essere un locale di qualità aperto dal pomeriggio. Evitare i codici da discoteca.
+- Le foto le fa un fotografo già istruito dal cliente; le ispirazioni sono in arrivo.
+
 ## Obiettivo
 - Sito completo su un dominio proprio, che il locale comprerà (per esempio blacksheepmenfi.it).
 - QR sui tavoli che porta direttamente alla drink list: `https://<dominio>/menu/#drink`.
