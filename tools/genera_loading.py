@@ -1,9 +1,10 @@
 """Crea l'animazione "loading" con la pecora che salta, per annunciare l'apertura.
 
 Uso:  python3 tools/genera_loading.py
-Crea motion/loading.html: sfondo nero, pecora crema che salta a scatti
-(12 fotogrammi al secondo, come un vecchio videogioco), scritta LOADING e una
-barra a blocchi che si riempie a ogni salto; l'ultimo blocco lampeggia.
+Crea motion/loading.html: sfondo nero, pecora crema che attraversa lo schermo
+da sinistra a destra saltando a scatti (12 fotogrammi al secondo, come un
+vecchio videogioco), scritta LOADING e una barra a blocchi che si riempie a
+ogni salto; l'ultimo blocco lampeggia.
 I video si fanno da questa pagina con tools/registra_loading.js.
 Richiede: pip install shapely
 """
@@ -34,8 +35,8 @@ forme = {n: forme_pecora(*POSE[n]) for n in nomi}
 fondo = {n: unary_union(f).bounds[3] for n, f in forme.items()}
 x0, y0, x1, y1 = unary_union(forme["ferma"]).bounds
 
-LARGHEZZA = 600          # larghezza della pecora sulla scena di 1080
-TERRA = 660              # linea di terra sulla scena
+LARGHEZZA = 400          # larghezza della pecora sulla scena di 1080
+TERRA = 620              # linea di terra sulla scena
 s = LARGHEZZA / (x1 - x0)
 posa_svg = "".join(
     f'<path id="p-{n}" fill="{CREMA}" transform="translate(0 {(y1 - fondo[n]):.1f})" '
@@ -43,12 +44,16 @@ posa_svg = "".join(
 
 # Un salto, un fotogramma per riga: (posa, sollevamento in px sulla scena)
 SALTO = [("ferma", 0), ("ferma", 0), ("ferma", 0), ("accucciata", 0), ("accucciata", 0),
-         ("stacco", 0), ("su", 90), ("volo", 150), ("volo", 170), ("volo", 160),
-         ("giu", 110), ("giu", 40), ("atterra", 0), ("accucciata", 0), ("accucciata", 0),
+         ("stacco", 0), ("su", 80), ("volo", 130), ("volo", 150), ("volo", 140),
+         ("giu", 95), ("giu", 35), ("atterra", 0), ("accucciata", 0), ("accucciata", 0),
          ("ferma", 0)]
+# Quanta parte del passo di un salto fa la pecora a ogni fotogramma: avanza solo in aria
+AVANZA = [0, 0, 0, 0, 0, .05, .15, .15, .15, .15, .15, .15, .05, 0, 0, 0]
+PASSO = 245              # px di scena per salto
+PARTENZA = -120          # centro della pecora all'inizio: si vede appena la testa
 SALTI = 6                # un blocco della barra per salto
 BLOCCHI = SALTI + 1      # l'ultimo resta vuoto e lampeggia: stiamo per aprire
-PAUSA = 18               # fotogrammi da fermi alla fine, prima di ricominciare
+PAUSA = 18               # fotogrammi senza pecora alla fine, prima che rientri
 
 pagina = f"""<!doctype html>
 <html lang="it">
@@ -68,29 +73,31 @@ pagina = f"""<!doctype html>
 <svg viewBox="0 0 1080 1080" role="img" aria-label="Black Sheep: loading">
   <defs>{posa_svg}</defs>
   <rect id="ombra" y="{TERRA + 8}" height="14" fill="#2a2a2a"/>
-  <g transform="translate({540 - (x0 + x1) / 2 * s:.1f} {TERRA - y1 * s:.1f}) scale({s:.4f})">
+  <g id="gruppo">
     <use id="pecora" href="#p-ferma"/>
   </g>
   <!-- x spostato di metà spaziatura: la spaziatura aggiunge aria anche dopo l'ultima lettera -->
-  <text id="parola" x="549" y="810" text-anchor="middle" fill="{CREMA}" font-family="Oswald, Impact, sans-serif"
-        font-weight="600" font-size="76" letter-spacing="18">LOADING</text>
-  <rect id="d1" y="796" width="14" height="14" fill="{CREMA}"/>
-  <rect id="d2" y="796" width="14" height="14" fill="{CREMA}"/>
-  <rect id="d3" y="796" width="14" height="14" fill="{CREMA}"/>
+  <text id="parola" x="547" y="760" text-anchor="middle" fill="{CREMA}" font-family="Oswald, Impact, sans-serif"
+        font-weight="600" font-size="58" letter-spacing="14">LOADING</text>
+  <rect id="d1" y="749" width="11" height="11" fill="{CREMA}"/>
+  <rect id="d2" y="749" width="11" height="11" fill="{CREMA}"/>
+  <rect id="d3" y="749" width="11" height="11" fill="{CREMA}"/>
   <g id="barra"></g>
 </svg>
 <script>
 const FPS = 12, SALTO = {json.dumps(SALTO)}, SALTI = {SALTI}, BLOCCHI = {BLOCCHI}, PAUSA = {PAUSA};
+const AVANZA = {json.dumps(AVANZA)}, PASSO = {PASSO}, PARTENZA = {PARTENZA};
 const TOTALE = SALTO.length * SALTI + PAUSA;
 const ns = "http://www.w3.org/2000/svg", barra = document.getElementById("barra");
-const LB = 46, GAP = 12, X0 = 540 - (BLOCCHI * LB + (BLOCCHI - 1) * GAP) / 2;
+const LB = 36, GAP = 10, X0 = 540 - (BLOCCHI * LB + (BLOCCHI - 1) * GAP) / 2;
 const blocchi = [...Array(BLOCCHI)].map((_, i) => {{
   const r = document.createElementNS(ns, "rect");
-  r.setAttribute("x", X0 + i * (LB + GAP)); r.setAttribute("y", 860);
-  r.setAttribute("width", LB); r.setAttribute("height", 24);
+  r.setAttribute("x", X0 + i * (LB + GAP)); r.setAttribute("y", 800);
+  r.setAttribute("width", LB); r.setAttribute("height", 18);
   barra.appendChild(r); return r;
 }});
 const pecora = document.getElementById("pecora"), ombra = document.getElementById("ombra");
+const gruppo = document.getElementById("gruppo");
 const parola = document.getElementById("parola");
 
 // Disegna il fotogramma f: sempre uguale per lo stesso f, così si può registrare
@@ -98,10 +105,17 @@ function disegna(f) {{
   f = ((f % TOTALE) + TOTALE) % TOTALE;
   const salto = Math.floor(f / SALTO.length);
   const [posa, su] = salto < SALTI ? SALTO[f % SALTO.length] : ["ferma", 0];
+  // posizione orizzontale a scatti di 10 px; nella pausa la pecora è già uscita a destra
+  const k = f % SALTO.length;
+  const fatto = salto < SALTI ? salto + AVANZA.slice(0, k + 1).reduce((a, b) => a + b, 0) : SALTI;
+  const x = Math.round((PARTENZA + PASSO * fatto) / 10) * 10;
+  // la pecora è disegnata rivolta a sinistra: si specchia perché vada verso destra
+  gruppo.setAttribute("transform",
+    `translate(${{x}} {TERRA}) scale(-{s:.4f} {s:.4f}) translate({-(x0 + x1) / 2:.1f} {-y1:.1f})`);
   pecora.setAttribute("href", "#p-" + posa);
   pecora.setAttribute("y", -su / {s:.4f});
-  const lo = Math.round((380 - su * 1.1) / 20) * 20;   // l'ombra si stringe a scatti
-  ombra.setAttribute("x", 540 - lo / 2); ombra.setAttribute("width", lo);
+  const lo = Math.round((260 - su * 0.9) / 20) * 20;   // l'ombra si stringe a scatti
+  ombra.setAttribute("x", x - lo / 2); ombra.setAttribute("width", lo);
   // un blocco in più quando la pecora atterra
   const pieni = salto < SALTI ? salto + (f % SALTO.length >= 12 ? 1 : 0) : SALTI;
   const lampo = Math.floor(f / 4) % 2 === 0;
@@ -111,7 +125,7 @@ function disegna(f) {{
   const punti = Math.floor(f / 4) % 4, fine = parola.getBBox().x + parola.getBBox().width;
   [1, 2, 3].forEach(i => {{
     const d = document.getElementById("d" + i);
-    d.setAttribute("x", fine - 4 + (i - 1) * 26);
+    d.setAttribute("x", fine - 3 + (i - 1) * 20);
     d.setAttribute("fill-opacity", i <= punti ? 1 : 0);
   }});
 }}
