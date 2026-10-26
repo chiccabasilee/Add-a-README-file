@@ -46,6 +46,7 @@ window.MENU = {
     {
       id: "food",
       nome: "Food",
+      settimana: "27 ottobre – 2 novembre", // da cambiare ogni settimana insieme ai piatti
       categorie: [
         {
           nome: "Da condividere",

@@ -11,24 +11,38 @@
   <meta property="og:image" content="../assets/og.png">
   <link rel="icon" href="../assets/marchio.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/oswald-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-  <header class="mhead">
-    <h1>
-      <img class="mhead__logo" src="../assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995">
-    </h1>
-    <a class="mhead__home" href="../">← Il sito</a>
+<body class="page-menu">
+  <p class="preview" id="preview" hidden>Anteprima — menù di esempio</p>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="../" aria-label="Black Sheep, vai al sito">
+        <img src="../assets/marchio.svg" alt="" width="52" height="52">
+      </a>
+      <button class="nav__toggle" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="links">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" id="links" aria-label="Sezioni">
+        <a href="../#storia">Storia</a>
+        <a href="../#luogo">Luogo</a>
+        <a href="#drink">Drink list</a>
+        <a href="#food">Food</a>
+        <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">IG</a>
+      </nav>
+    </div>
   </header>
 
-  <p class="preview" id="preview" hidden>Anteprima grafica — contenuti di esempio</p>
+  <h1 class="visually-hidden">Menù di Black Sheep · Cocktail &amp; Food Lab</h1>
 
   <nav class="tabs" id="tabs" aria-label="Categorie del menù"></nav>
 
   <main class="mmain" id="menu"></main>
 
-  <footer class="info">
+  <section class="info" aria-label="Note e allergeni">
     <p class="info__coperto" id="coperto"></p>
     <p class="info__note"><span aria-hidden="true">*</span> Prodotto surgelato o congelato all'origine.</p>
     <details class="allergeni">
@@ -51,14 +65,24 @@
         <li>Molluschi</li>
       </ol>
     </details>
+  </section>
 
-    <div class="info__contatti">
-      <a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32 · Menfi</a>
-      <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">@black_sheep_menfi</a>
+  <section class="section">
+    <img class="sheep" src="../assets/pecora-bianco.svg" alt="" width="801" height="548">
+  </section>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <img class="foot__logo" src="../assets/marchio.svg" alt="Black Sheep" width="92" height="92">
+      <div class="foot__text">
+        <p>Via Calogero Ognibene 30/32, Menfi — <a href="tel:+393297730197">329 773 0197</a> — <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p class="foot__small">© 2026 Black Sheep · P.IVA da inserire</p>
+      </div>
     </div>
   </footer>
 
   <script src="menu.js"></script>
   <script src="app.js"></script>
+  <script src="../site.js"></script>
 </body>
 </html>

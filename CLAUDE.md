@@ -10,7 +10,12 @@
 - Sito completo su un dominio proprio, che il locale comprerà (per esempio blacksheepmenfi.it).
 - QR sui tavoli che porta direttamente alla drink list: `https://<dominio>/menu/#drink`.
 - Sezioni richieste: **la storia**, **il luogo**, **drink list**, **menu food che cambia ogni settimana**.
-- Stile **molto grafico**, sul modello di https://www.freniefrizioni.com/bar/. Quel sito non è raggiungibile dall'ambiente di sviluppo: servono gli screenshot fatti dal cliente.
+- Stile **molto grafico**, sul modello di https://www.freniefrizioni.com/bar/ (dominio ora consentito nella rete dell'ambiente). Da lì abbiamo preso:
+  - nero più un solo colore (loro giallo, noi crema);
+  - nastri che scorrono, anche inclinati sopra la foto d'apertura;
+  - titoli enormi e ruotati, frasi grandi in maiuscolo;
+  - foto e testo sovrapposti in modo asimmetrico;
+  - il simbolo ricorrente (per noi la pecora) e il fondo pagina tutto a colore.
 
 ## Identità visiva
 - **Logo nuovo** "Black Sheep · Cocktail & Food Lab", vettoriale, in `assets/`:
@@ -19,17 +24,18 @@
   - `marchio.svg`: solo la testa in un cerchio nero, usato per il QR e per l'icona del sito.
   - `pecora.svg` (nera), `pecora-bianco.svg` (crema) e `pecora-marchio.svg` (nel cerchio nero): pecora intera di profilo nello stile della testa. Si rigenerano con `tools/genera_pecora.py`.
 - **Colori**: sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
-- **Font**: Oswald per i titoli (maiuscolo, spaziato) e Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
-- **Texture**: ardesia antracite, scurita del 30% circa (ricevuta a 500×1000; serve la versione ad alta risoluzione per usarla sul sito).
+- **Font**: Anton per i titoli da manifesto, Oswald per menu ed etichette (maiuscolo, spaziato), Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
+- **Texture**: ardesia antracite, scurita del 30% circa. Sul sito è `assets/ardesia.jpg`, una piastrella specchiata 1000×2000 fatta dall'originale 500×1000: con la versione ad alta risoluzione sparirebbe l'effetto specchio ai lati.
 
 ## Stato del codice
 - Repository `chiccabasilee/Add-a-README-file`, branch `claude/qr-code-restaurant-menu-2vl2hr`.
 - Pubblicazione prevista su GitHub Pages con il dominio personalizzato.
-- `index.html` (home, prima bozza): apertura con logo, il locale, menù, eventi, sala eventi, dove siamo, fondo pagina.
-  - **Da ristrutturare** in: storia, luogo, drink list, food della settimana.
+- `index.html` (home): apertura su ardesia con logo e due nastri inclinati, **storia**, nastri, **luogo**, **drink list**, **food della settimana**, pecora, fondo pagina crema.
+  - Il food della settimana in home è letto da `menu/menu.js`, quindi si aggiorna in un posto solo.
   - I testi sono bozze scritte senza informazioni dal cliente; le foto sono riquadri segnaposto.
+- `site.js`: riempie i nastri che scorrono, gestisce il menu a tendina su telefono e mostra il food in home.
 - `menu/`: pagina del menù pensata per il telefono, prima la drink list e poi il food.
-  - Il contenuto sta in `menu/menu.js`, che per ora ha voci di esempio e `anteprima: true`.
+  - Il contenuto sta in `menu/menu.js`, che per ora ha voci di esempio e `anteprima: true`. La sezione food ha il campo `settimana` con le date.
   - Barra delle categorie fissa in alto.
   - Legenda dei 14 allergeni (Reg. UE 1169/2011), nota sui surgelati, coperto.
 - `style.css`: grafica comune alle pagine.
@@ -40,7 +46,7 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Screenshot del sito Freni e Frizioni e cosa piace di più.
+1. Parere sulla nuova grafica (fatta sul modello di Freni e Frizioni).
 2. Chi aggiorna il food ogni settimana. Due proposte:
    - un foglio Google che il sito legge da solo (consigliata);
    - il cliente manda il menu e lo aggiorna Claude.

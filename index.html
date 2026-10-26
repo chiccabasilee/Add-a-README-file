@@ -4,140 +4,139 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Black Sheep · Cocktail &amp; Food Lab · Menfi</title>
-  <meta name="description" content="Black Sheep, cocktail &amp; food lab a Menfi. Cocktail, vini, food e serate in Via Calogero Ognibene 30/32.">
+  <meta name="description" content="Black Sheep, cocktail &amp; food lab a Menfi. Drink list, food della settimana e serate in Via Calogero Ognibene 30/32.">
   <meta name="theme-color" content="#0d0d0d">
   <meta property="og:title" content="Black Sheep · Cocktail &amp; Food Lab">
   <meta property="og:description" content="Menfi — Stand out like a Black Sheep">
   <meta property="og:image" content="assets/og.png">
   <link rel="icon" href="assets/marchio.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/oswald-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <p class="preview" id="preview" hidden>Anteprima — testi, foto e menù sono di esempio</p>
+
   <header class="nav">
     <div class="wrap nav__inner">
-      <a class="nav__brand" href="#top" aria-label="Black Sheep, torna su">
-        <img src="assets/marchio.svg" alt="" width="36" height="36">
-        <span>Black Sheep</span>
+      <a class="nav__brand" href="#top" aria-label="Black Sheep, torna all'inizio">
+        <img src="assets/marchio.svg" alt="" width="52" height="52">
       </a>
-      <nav class="nav__links" aria-label="Sezioni">
-        <a href="#locale">Il locale</a>
-        <a href="#eventi">Eventi</a>
-        <a href="#sala">Sala eventi</a>
-        <a href="#dove">Dove siamo</a>
-        <a class="btn btn--ghost" href="menu/#drink">Menù</a>
+      <button class="nav__toggle" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="links">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links" id="links" aria-label="Sezioni">
+        <a href="#storia">Storia</a>
+        <a href="#luogo">Luogo</a>
+        <a href="menu/#drink">Drink list</a>
+        <a href="#food">Food</a>
+        <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">IG</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div>
+    <section class="hero slate">
+      <div class="tape tape--cross" data-text="Black Sheep — Cocktail &amp; Food Lab">Black Sheep — Cocktail &amp; Food Lab</div>
+      <div class="tape tape--cross tape--rev" data-text="Stand out like a Black Sheep">Stand out like a Black Sheep</div>
+      <div class="hero__inner">
         <h1>
           <img class="hero__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995">
         </h1>
-        <p class="hero__motto">Stand out like a Black Sheep</p>
-        <div class="hero__actions">
-          <a class="btn btn--solid" href="menu/#drink">Drink list</a>
-          <a class="btn btn--ghost" href="menu/#food">Food</a>
-        </div>
-        <p class="hero__where">Menfi · Via Calogero Ognibene 30/32</p>
+        <p class="hero__claim">Menfi · Via Calogero Ognibene 30/32</p>
       </div>
     </section>
 
-    <section class="section" id="locale">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">Il locale</p>
-          <h2 class="h2">Da Irish pub<br>a cocktail &amp; food lab</h2>
-          <p class="lead">Dove prima c'era l'Irish pub di Menfi oggi c'è un laboratorio di cocktail, cucina e vino. Drink pensati al banco, piatti da condividere e una selezione di etichette da scoprire.</p>
-        </div>
-        <div class="ph" role="img" aria-label="Foto del locale">Foto del locale</div>
-      </div>
-    </section>
-
-    <section class="section" id="menu">
+    <section class="section" id="storia">
       <div class="wrap">
-        <p class="eyebrow">Il menù</p>
-        <h2 class="h2">Cosa beviamo,<br>cosa mangiamo</h2>
-        <div class="cards">
-          <a class="card" href="menu/#drink">
-            <h3 class="card__title">Drink list</h3>
-            <p class="card__text">Signature, grandi classici, vini e birre.</p>
-            <span class="card__go">Scopri →</span>
-          </a>
-          <a class="card" href="menu/#food">
-            <h3 class="card__title">Food</h3>
-            <p class="card__text">La cucina del lab, da accompagnare al bicchiere.</p>
-            <span class="card__go">Scopri →</span>
-          </a>
+        <h2 class="poster">La<br>storia</h2>
+        <div class="collage">
+          <div class="ph collage__a" role="img" aria-label="Foto storica del locale">Foto</div>
+          <div class="collage__b">
+            <p class="statement statement--right">Prima era l'Irish pub di Menfi. Oggi è un cocktail &amp; food lab.</p>
+          </div>
+          <div class="ph collage__c" role="img" aria-label="Foto del bancone">Foto</div>
+          <div class="collage__d">
+            <p class="statement">Drink pensati al banco, cucina che cambia ogni settimana, la stessa voglia di fare tardi.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="eventi">
+    <div class="tapes" aria-hidden="true">
+      <div class="tape" data-text="Cocktail &amp; Food Lab — Ex Irish pub — Menfi">Cocktail &amp; Food Lab</div>
+      <div class="tape tape--rev" data-text="Stand out like a Black Sheep">Stand out like a Black Sheep</div>
+    </div>
+
+    <section class="section" id="luogo">
       <div class="wrap">
-        <p class="eyebrow">Eventi</p>
-        <h2 class="h2">Serate, musica,<br>ospiti</h2>
-        <p class="lead">Music selection, dj set e serate a tema. Il calendario aggiornato è sul nostro Instagram.</p>
-        <div class="events">
-          <div class="ph" role="img" aria-label="Locandina evento">Locandina</div>
-          <div class="ph" role="img" aria-label="Locandina evento">Locandina</div>
-          <div class="ph" role="img" aria-label="Locandina evento">Locandina</div>
+        <h2 class="poster poster--right">Il<br>luogo</h2>
+        <div class="pair">
+          <div class="ph" role="img" aria-label="Foto della sala">Foto</div>
+          <div class="ph" role="img" aria-label="Foto dell'ingresso">Foto</div>
         </div>
-        <p class="actions"><a class="btn btn--ghost" href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Seguici su Instagram</a></p>
+        <dl class="facts">
+          <div>
+            <dt>Dove</dt>
+            <dd><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32, Menfi</a></dd>
+          </div>
+          <div>
+            <dt>Quando</dt>
+            <dd class="todo">Orari da inserire</dd>
+          </div>
+          <div>
+            <dt>Info</dt>
+            <dd><a href="tel:+393297730197">329 773 0197</a></dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <section class="section" id="sala">
-      <div class="wrap split split--rev">
-        <div>
-          <p class="eyebrow">Sala eventi</p>
-          <h2 class="h2">La tua festa,<br>da Black Sheep</h2>
-          <p class="lead">Compleanni, lauree, cene aziendali: una sala riservata con drink e food su misura per te e i tuoi ospiti.</p>
-          <p class="actions"><a class="btn btn--solid" href="tel:+393297730197">Chiama per info</a></p>
-        </div>
-        <div class="ph" role="img" aria-label="Foto della sala eventi">Foto sala eventi</div>
-      </div>
-    </section>
-
-    <section class="section" id="dove">
+    <section class="section slate" id="drink">
       <div class="wrap">
-        <p class="eyebrow">Dove siamo</p>
-        <h2 class="h2">Vieni a trovarci</h2>
-        <div class="where">
-          <dl>
-            <div>
-              <dt>Indirizzo</dt>
-              <dd><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32<br>92013 Menfi (AG)</a></dd>
-            </div>
-            <div>
-              <dt>Orari</dt>
-              <dd class="todo">Da inserire</dd>
-            </div>
-            <div>
-              <dt>Contatti</dt>
-              <dd><a href="tel:+393297730197">329 773 0197</a></dd>
-            </div>
-          </dl>
-          <a class="ph ph--link" href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Apri in Google Maps →</a>
+        <h2 class="poster">Drink<br>list</h2>
+        <div class="feature">
+          <div class="ph" role="img" aria-label="Foto di un cocktail">Foto</div>
+          <p class="statement">Signature, grandi classici, vini e birre.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn--solid" href="menu/#drink">Apri la drink list →</a>
         </div>
       </div>
+    </section>
+
+    <section class="section" id="food">
+      <div class="wrap">
+        <h2 class="poster poster--right">Food<small>della settimana</small></h2>
+        <p class="week" id="week">Settimana in arrivo</p>
+        <ul class="dishes" id="dishes"></ul>
+        <div class="actions">
+          <a class="btn" href="menu/#food">Menù completo con allergeni →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="tapes" aria-hidden="true">
+      <div class="tape tape--rev" data-text="Black Sheep — Menfi — Cocktail &amp; Food Lab">Black Sheep</div>
+    </div>
+
+    <section class="section">
+      <img class="sheep" src="assets/pecora-bianco.svg" alt="" width="801" height="548">
     </section>
   </main>
 
   <footer class="foot">
     <div class="wrap foot__inner">
-      <img class="foot__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995">
-      <div class="foot__links">
-        <a href="menu/#drink">Menù</a>
-        <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a>
-        <a href="tel:+393297730197">329 773 0197</a>
+      <img class="foot__logo" src="assets/marchio.svg" alt="Black Sheep" width="92" height="92">
+      <div class="foot__text">
+        <p>Via Calogero Ognibene 30/32, Menfi — <a href="tel:+393297730197">329 773 0197</a> — <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p class="foot__small">© 2026 Black Sheep · P.IVA da inserire</p>
       </div>
-      <p>Via Calogero Ognibene 30/32 · 92013 Menfi (AG)</p>
-      <p>© 2026 Black Sheep · P.IVA <span class="todo">da inserire</span></p>
     </div>
   </footer>
+
+  <script src="menu/menu.js"></script>
+  <script src="site.js"></script>
 </body>
 </html>
