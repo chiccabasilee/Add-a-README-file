@@ -44,7 +44,7 @@
   - Area di rispetto X = altezza della B di BLACK (11,4% del logo). Il payoff è alto la metà di X: il logo completo si legge fino a circa 110 px di altezza (25 mm in stampa); la testa da sola regge fino a 16 px.
   - Angoli della testa: quasi verticali, inclinati di 5–15° (il muso converge); tetto a ±30–40°; orecchie a ±15°.
   - Tre linguaggi nel logo: testa geometrica e precisa, archi a pennello secco, scritta a mano. Il sistema non deve aggiungere una quarta voce espressiva.
-- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (**approvata**), 3 tre direzioni creative, 4 sviluppo della direzione scelta.
+- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (**approvata**), 3 tre direzioni creative (**presentate**, vedi `brand/direzioni.md`: A Fuori dal gregge, B Drink Card N°, C Partenze; in attesa della scelta del cliente), 4 sviluppo della direzione scelta.
   - Indicazione del cliente per la fase 3: andare oltre gli spunti ricavati dal logo, verso qualcosa di **più originale e con un effetto grafico molto forte**.
 - **Regole d'uso del logo (decise dal cliente)**:
   - Il disegno del logo non si modifica né si reinterpreta: il sistema grafico si adatta intorno a lui.
@@ -88,7 +88,7 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Ispirazioni (del cliente e del fotografo) per la fase 3: tre direzioni creative con font e stile generale.
+1. Scelta tra le tre direzioni creative (A, B, C) ed eventuali commenti. Mood fotografico ricevuto: flash, mani, rossi e ambre.
 2. Drink list vera: drink, prezzi, coperto, allergeni.
 3. Come gestire i contatti (per ora: telefono per prenotare).
 4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).
