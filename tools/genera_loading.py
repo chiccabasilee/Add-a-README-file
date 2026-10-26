@@ -1,13 +1,14 @@
 """Crea l'animazione "loading" con la pecora che salta, per annunciare l'apertura.
 
 Uso:  python3 tools/genera_loading.py
-Crea motion/loading.html: sfondo nero, la pecora crema attraversa lo schermo
-da sinistra a destra galoppando e saltando a scatti (12 fotogrammi al secondo,
-come un vecchio videogioco). Come le pecore che si contano per addormentarsi,
-salta uno steccato e poi gli oggetti del bar: a ogni ostacolo compare il numero
-e si accende un blocco della barra sotto la scritta LOADING. L'ultimo blocco
-resta vuoto e lampeggia: stiamo per aprire.
-I video si fanno da questa pagina con tools/registra_loading.js.
+Crea motion/loading.html: sfondo nero e, come le pecore che si contano per
+addormentarsi, pecore crema che una dopo l'altra entrano da sinistra, saltano
+l'oggetto al centro ed escono a destra, galoppando a scatti (12 fotogrammi al
+secondo, come un vecchio videogioco). L'oggetto cambia a ogni salto: steccato
+e poi gli oggetti del bar. Sotto, la scritta LOADING e una barra a blocchi che
+si riempie a ogni salto; l'ultimo blocco resta vuoto e lampeggia: stiamo per aprire.
+Il ciclo si ripete senza stacchi. GIF e video si fanno da questa pagina con
+tools/registra_loading.js.
 Richiede: pip install shapely
 """
 import json
@@ -27,7 +28,6 @@ LARGHEZZA = 400          # larghezza della pecora sulla scena di 1080
 TERRA = 620              # linea di terra sulla scena
 GALOPPO = 20             # px per fotogramma a terra
 VOLO = 70                # px per fotogramma in aria
-PAUSA = 18               # fotogrammi senza pecora alla fine, prima che rientri
 
 # Pose: (zampe anteriori, zampe posteriori, inclinazione), vedi forme_pecora
 POSE = {
@@ -51,11 +51,6 @@ s = LARGHEZZA / (x1 - x0)
 posa_svg = "".join(
     f'<path id="p-{n}" fill="{CREMA}" transform="translate(0 {(y1 - fondo[n]):.1f})" '
     f'd="{tracciato(forme[n])}"/>' for n in nomi)
-
-# Dove stanno gli zoccoli rispetto al centro, sulla scena e con la pecora girata a destra:
-# davanti (forme 3) e dietro (forme 2), per mettere l'ostacolo tra stacco e atterraggio
-ZOCCOLI_DAVANTI = (cx - forme["ferma"][3].bounds[0]) * s
-ZOCCOLI_DIETRO = (cx - forme["ferma"][2].bounds[2]) * s
 
 
 # --- Ostacoli: crema, a spigoli vivi, con i tagli come la pecora --------------------
@@ -118,9 +113,12 @@ _spicchi = Polygon(poligono(35, 8, (0, -50), math.pi / 8)).difference(unary_unio
 OGGETTI["limone"] = [_anello, _spicchi]
 OGGETTI = {k: [scale(g, 1.25, 1.25, origin=(0, 0)) for g in v] for k, v in OGGETTI.items()}
 
-# Due ostacoli per passaggio: tre salti non entrano nella larghezza dello schermo
-PASSAGGI = [["steccato", "coppetta"], ["shaker", "pinta"], ["bottiglia", "limone"]]
-BLOCCHI = sum(map(len, PASSAGGI)) + 1   # l'ultimo resta vuoto e lampeggia
+# Un oggetto per salto, sempre al centro della scena
+ORDINE = ["steccato", "coppetta", "shaker", "pinta", "bottiglia", "limone"]
+CENTRO = 540
+BLOCCHI = len(ORDINE) + 1   # l'ultimo resta vuoto e lampeggia
+INTERVALLO = 26             # fotogrammi tra l'entrata di una pecora e la successiva:
+                            # a terra restano a 26 x 20 = 520 px, 120 px tra una e l'altra
 
 
 def pecora_in_scena(posa, x, su):
@@ -129,68 +127,74 @@ def pecora_in_scena(posa, x, su):
                             [-s, 0, 0, s, x + s * cx, TERRA - su - s * fondo[posa]])
 
 
-def posto_ostacolo(oggetto, salto):
-    """Dove mettere l'ostacolo perché la pecora, fotogramma per fotogramma, lo scavalchi
-    con più aria possibile. salto: [(posa, x, su)] dallo stacco all'atterraggio."""
-    sagome = [pecora_in_scena(*f) for f in salto]
-    forma = unary_union(OGGETTI[oggetto])
-    def aria(ox):
-        o = translate(forma, ox, TERRA)
-        return min(g.distance(o) for g in sagome)
-    da, a = salto[0][1], salto[-1][1]
-    ox = max(range(round(da) - 150, round(a) + 150, 2), key=aria)
-    assert aria(ox) >= 15, f"la pecora non supera {oggetto} ({aria(ox):.0f} px d'aria)"
-    return ox
-
-
-# --- Tempi: un fotogramma per elemento -----------------------------------------------
+# --- La vita di una pecora: entra, galoppa, salta l'oggetto centrale, esce ------------
 SALTO = [("accucciata", 0, GALOPPO), ("stacco", 0, VOLO), ("su", 120, VOLO), ("volo", 180, VOLO),
          ("volo", 200, VOLO), ("volo", 190, VOLO), ("giu", 165, VOLO), ("giu", 105, VOLO),
          ("atterra", 0, VOLO), ("accucciata", 0, GALOPPO)]
-TRA_SALTI = 2            # fotogrammi di galoppo tra un salto e l'altro
-# Distanza tra due ostacoli, e da dove parte il galoppo perché la coppia stia al centro
-PASSO = sum(dx for _, _, dx in SALTO) + TRA_SALTI * GALOPPO
-DALLO_STACCO = (ZOCCOLI_DAVANTI + 7 * VOLO + ZOCCOLI_DIETRO) / 2   # ostacolo - stacco
-PARTENZA = -LARGHEZZA / 2 - 30
-GALOPPO_INIZIALE = round((540 - PASSO / 2 - DALLO_STACCO - VOLO - GALOPPO - PARTENZA) / GALOPPO)
-fotogrammi, ostacoli, numeri = [], [], []
-saltati = 0
-for n, passaggio in enumerate(PASSAGGI):
-    x, posti = PARTENZA, []
+IN_ARIA = ("stacco", "su", "volo", "giu", "atterra")
 
-    def galoppa(k):
-        global x
-        for _ in range(k):
-            x += GALOPPO
-            aperta = len(fotogrammi) % 2 == 0
-            fotogrammi.append({"p": "aperta" if aperta else "raccolta", "x": x,
-                               "su": 6 if aperta else 0, "o": n, "b": saltati})
+# Dove staccare perché la pecora scavalchi con più aria possibile tutti gli oggetti al centro
+x, salto = 0, []
+for posa, su, dx in SALTO:
+    x += dx
+    if posa in IN_ARIA:
+        salto.append((posa, x - SALTO[0][2] - SALTO[1][2], su))   # x relativo allo stacco
+oggetti_al_centro = [translate(unary_union(OGGETTI[o]), CENTRO, TERRA) for o in ORDINE]
 
-    galoppa(GALOPPO_INIZIALE)
-    for oggetto in passaggio:
-        for posa, su, dx in SALTO:
-            x += dx
-            if posa == "stacco":
-                salto = []
-            if posa in ("stacco", "su", "volo", "giu", "atterra"):
-                salto.append((posa, x, su))
-            if posa == "atterra":
-                ox = posto_ostacolo(oggetto, salto)
-                posti.append((oggetto, ox))
-                saltati += 1
-                numeri.append({"f": len(fotogrammi), "n": saltati, "x": round(ox)})
-            fotogrammi.append({"p": posa, "x": x, "su": su, "o": n, "b": saltati})
-        galoppa(TRA_SALTI)
-    while x < 1080 + LARGHEZZA / 2 + 30:
-        galoppa(1)
-    ostacoli.append(posti)
-fotogrammi += [{"p": "ferma", "x": 2000, "su": 0, "o": len(PASSAGGI) - 1, "b": saltati}] * PAUSA
+
+def aria(stacco):
+    sagome = [pecora_in_scena(p, stacco + x, su) for p, x, su in salto]
+    return min(g.distance(o) for g in sagome for o in oggetti_al_centro)
+
+
+STACCO = max(range(CENTRO - 450, CENTRO, 2), key=aria)
+assert aria(STACCO) >= 15, f"la pecora non supera gli oggetti ({aria(STACCO):.0f} px d'aria)"
+
+ENTRATA = -LARGHEZZA / 2 - 30
+galoppi = math.ceil((STACCO - SALTO[0][2] - SALTO[1][2] - ENTRATA) / GALOPPO)
+x = STACCO - SALTO[0][2] - SALTO[1][2] - galoppi * GALOPPO
+vita = []
+
+
+def galoppa():
+    global x
+    x += GALOPPO
+    aperta = len(vita) % 2 == 0
+    vita.append(("aperta" if aperta else "raccolta", x, 6 if aperta else 0))
+
+
+for _ in range(galoppi):
+    galoppa()
+for posa, su, dx in SALTO:
+    x += dx
+    if posa == "atterra":
+        ATTERRA = len(vita)
+    vita.append((posa, x, su))
+while x < 1080 + LARGHEZZA / 2 + 30:
+    galoppa()
+CAMBIO = ATTERRA + 3        # l'oggetto cambia quando la pecora è scesa e passata
+
+# --- Il ciclo: una pecora per oggetto, ognuna INTERVALLO fotogrammi dopo l'altra ------
+CICLO = INTERVALLO * len(ORDINE)
+assert len(vita) < CICLO
+fotogrammi = []
+for f in range(CICLO):
+    pecore = []
+    for k in range(len(ORDINE)):
+        t = (f - INTERVALLO * k) % CICLO
+        if t < len(vita):
+            posa, x, su = vita[t]
+            pecore.append([k, posa, round(x), su])
+    oggetto = ((f - CAMBIO) // INTERVALLO + 1) % len(ORDINE)
+    pieni = sum((INTERVALLO * k + ATTERRA) % CICLO <= f for k in range(len(ORDINE)))
+    fotogrammi.append({"s": pecore, "o": oggetto, "b": pieni})
 
 ostacoli_svg = "".join(
-    f'<g id="o-{n}" fill="{CREMA}">' + "".join(
-        f'<path transform="translate({ox:.0f} {TERRA})" d="{tracciato(OGGETTI[ogg])}"/>'
-        for ogg, ox in posti) + "</g>"
-    for n, posti in enumerate(ostacoli))
+    f'<path id="o-{i}" fill="{CREMA}" transform="translate({CENTRO} {TERRA})" '
+    f'd="{tracciato(OGGETTI[o])}"/>' for i, o in enumerate(ORDINE))
+pecore_svg = "".join(
+    f'<rect id="ombra-{k}" y="{TERRA + 8}" height="14" fill="#2a2a2a"/>'
+    f'<g id="g-{k}"><use id="u-{k}" href="#p-ferma"/></g>' for k in range(len(ORDINE)))
 
 pagina = f"""<!doctype html>
 <html lang="it">
@@ -210,10 +214,7 @@ pagina = f"""<!doctype html>
 <svg viewBox="0 0 1080 1080" role="img" aria-label="Black Sheep: loading">
   <defs>{posa_svg}</defs>
   {ostacoli_svg}
-  <rect id="ombra" y="{TERRA + 8}" height="14" fill="#2a2a2a"/>
-  <g id="gruppo"><use id="pecora" href="#p-ferma"/></g>
-  <text id="numero" y="0" text-anchor="middle" fill="{CREMA}" font-family="Oswald, Impact, sans-serif"
-        font-weight="600" font-size="72"></text>
+  {pecore_svg}
   <!-- x spostato di metà spaziatura: la spaziatura aggiunge aria anche dopo l'ultima lettera -->
   <text id="parola" x="547" y="760" text-anchor="middle" fill="{CREMA}" font-family="Oswald, Impact, sans-serif"
         font-weight="600" font-size="58" letter-spacing="14">LOADING</text>
@@ -224,7 +225,7 @@ pagina = f"""<!doctype html>
 </svg>
 <script>
 const FPS = 12, F = {json.dumps(fotogrammi, separators=(",", ":"))};
-const NUMERI = {json.dumps(numeri, separators=(",", ":"))}, BLOCCHI = {BLOCCHI}, PASSAGGI = {len(PASSAGGI)};
+const BLOCCHI = {BLOCCHI}, PECORE = {len(ORDINE)};
 const TOTALE = F.length, $ = id => document.getElementById(id);
 const LB = 36, GAP = 10, X0 = 540 - (BLOCCHI * LB + (BLOCCHI - 1) * GAP) / 2;
 const blocchi = [...Array(BLOCCHI)].map((_, i) => {{
@@ -237,19 +238,21 @@ const blocchi = [...Array(BLOCCHI)].map((_, i) => {{
 // Disegna il fotogramma f: sempre uguale per lo stesso f, così si può registrare
 function disegna(f) {{
   f = ((f % TOTALE) + TOTALE) % TOTALE;
-  const {{ p, x, su, o, b }} = F[f];
-  // la pecora è disegnata rivolta a sinistra: si specchia perché vada verso destra
-  $("gruppo").setAttribute("transform",
-    `translate(${{x}} {TERRA}) scale(-{s:.4f} {s:.4f}) translate({-cx:.1f} {-y1:.1f})`);
-  $("pecora").setAttribute("href", "#p-" + p);
-  $("pecora").setAttribute("y", -su / {s:.4f});
-  const lo = Math.round((260 - su * 0.9) / 20) * 20;   // l'ombra si stringe a scatti
-  $("ombra").setAttribute("x", x - lo / 2); $("ombra").setAttribute("width", lo);
-  for (let n = 0; n < PASSAGGI; n++) $("o-" + n).style.display = n === o ? "" : "none";
-  // il numero dell'ostacolo appena saltato sale a scatti e sparisce, come un punteggio
-  const num = NUMERI.find(m => f >= m.f && f < m.f + 8);
-  $("numero").textContent = num ? num.n : "";
-  if (num) {{ $("numero").setAttribute("x", num.x); $("numero").setAttribute("y", {TERRA - 190} - (f - num.f) * 10); }}
+  const {{ s, o, b }} = F[f];
+  for (let k = 0; k < PECORE; k++) {{
+    $("g-" + k).style.display = "none"; $("ombra-" + k).style.display = "none";
+  }}
+  for (const [k, p, x, su] of s) {{
+    // la pecora è disegnata rivolta a sinistra: si specchia perché vada verso destra
+    $("g-" + k).style.display = ""; $("ombra-" + k).style.display = "";
+    $("g-" + k).setAttribute("transform",
+      `translate(${{x}} {TERRA}) scale(-{s:.4f} {s:.4f}) translate({-cx:.1f} {-y1:.1f})`);
+    $("u-" + k).setAttribute("href", "#p-" + p);
+    $("u-" + k).setAttribute("y", -su / {s:.4f});
+    const lo = Math.round((260 - su * 0.9) / 20) * 20;   // l'ombra si stringe a scatti
+    $("ombra-" + k).setAttribute("x", x - lo / 2); $("ombra-" + k).setAttribute("width", lo);
+  }}
+  for (let i = 0; i < PECORE; i++) $("o-" + i).style.display = i === o ? "" : "none";
   const lampo = Math.floor(f / 4) % 2 === 0;
   blocchi.forEach((r, i) => r.setAttribute("fill",
     i < b ? "{CREMA}" : (i === BLOCCHI - 1 && lampo ? "#9a958d" : "#2a2a2a")));
@@ -272,4 +275,5 @@ if (!location.search.includes("registra")) {{
 """
 (ROOT / "motion").mkdir(exist_ok=True)
 (ROOT / "motion" / "loading.html").write_text(pagina)
-print(f"Creato motion/loading.html: {len(fotogrammi)} fotogrammi, {len(fotogrammi) / 12:.1f} s")
+print(f"Creato motion/loading.html: {len(fotogrammi)} fotogrammi, {len(fotogrammi) / 12:.1f} s, "
+      f"{aria(STACCO):.0f} px d'aria sugli oggetti")

@@ -1,7 +1,7 @@
 // Registra motion/loading.html in video MP4, fotogramma per fotogramma.
 //
 // Uso:  node tools/registra_loading.js
-// Crea motion/loading-quadrato.mp4 (1080×1080, post) e
+// Crea motion/loading-quadrato.mp4 (1080×1080, post), motion/loading.gif (720×720) e
 // motion/loading-storia.mp4 (1080×1920, storie e reel).
 // Richiede: playwright con Chromium e ffmpeg.
 const { chromium } = require("playwright");
@@ -32,8 +32,17 @@ const GIRI = 2; // il video ripete l'animazione due volte
     execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-framerate", String(fps),
       "-i", path.join(dir, "%04d.png"), "-r", "30", "-c:v", "libx264",
       "-pix_fmt", "yuv420p", "-crf", "16", "-movflags", "+faststart", out]);
-    fs.rmSync(dir, { recursive: true });
     console.log("Creato", path.relative(ROOT, out));
+    if (nome === "quadrato") {
+      // GIF a 720 px, un solo giro (la GIF si ripete da sola), pochi colori e niente retinatura
+      const gif = path.join(ROOT, "motion", "loading.gif");
+      execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-framerate", String(fps),
+        "-i", path.join(dir, "%04d.png"), "-frames:v", String(totale),
+        "-vf", "scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=16[p];[b][p]paletteuse=dither=none",
+        "-loop", "0", gif]);
+      console.log("Creato", path.relative(ROOT, gif));
+    }
+    fs.rmSync(dir, { recursive: true });
     await page.close();
   }
   await browser.close();
