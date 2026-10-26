@@ -3,9 +3,9 @@
 Uso:  python3 tools/genera_loading.py
 Crea motion/loading.html: sfondo nero e, come le pecore che si contano per
 addormentarsi, pecore crema che una dopo l'altra entrano da sinistra, saltano
-l'oggetto al centro ed escono a destra, galoppando a scatti (12 fotogrammi al
-secondo, come un vecchio videogioco). L'oggetto cambia a ogni salto: steccato
-e poi gli oggetti del bar. Sotto, la scritta LOADING e una barra a blocchi che
+l'oggetto al centro ed escono a destra, galoppando a scatti (16 fotogrammi al
+secondo, come un vecchio videogioco). L'oggetto cambia a ogni salto ed è sempre
+un simbolo del bar lab. Sotto, la scritta LOADING e una barra a blocchi che
 si riempie a ogni salto; l'ultimo blocco resta vuoto e lampeggia: stiamo per aprire.
 Il ciclo si ripete senza stacchi. GIF e video si fanno da questa pagina con
 tools/registra_loading.js.
@@ -28,6 +28,7 @@ LARGHEZZA = 400          # larghezza della pecora sulla scena di 1080
 TERRA = 620              # linea di terra sulla scena
 GALOPPO = 20             # px per fotogramma a terra
 VOLO = 70                # px per fotogramma in aria
+FPS = 16                 # pochi fotogrammi al secondo: il movimento resta a scatti
 
 # Pose: (zampe anteriori, zampe posteriori, inclinazione), vedi forme_pecora
 POSE = {
@@ -75,18 +76,17 @@ def poligono(r, n, c=(0, 0), giro=0):
 
 # Coordinate con l'origine a terra, al centro; y negativo verso l'alto
 OGGETTI = {
-    "steccato": stacca([
-        [(-68, -26), (68, -26), (68, -40), (-68, -40)],             # traverse
-        [(-68, -70), (68, -70), (68, -84), (-68, -84)],
-        [(-46, 0), (-28, 0), (-28, -96), (-37, -110), (-46, -96)],  # paletti a punta
-        [(28, 0), (46, 0), (46, -96), (37, -110), (28, -96)],
-    ]),
     "coppetta": stacca([
         [(-34, 0), (34, 0), (26, -9), (-26, -9)],                   # piede
         [(-4, -9), (4, -9), (4, -58), (-4, -58)],                   # stelo
         [(-46, -106), (46, -106), (5, -60), (-5, -60)],             # coppa
         poligono(9, 6, (10, -78)),                                  # oliva
     ], tagli=[[(-40, -96), (40, -96), (38, -93), (-38, -93)]]),     # bordo del liquido
+    "beuta": stacca([                                               # il "lab"
+        [(-42, 0), (42, 0), (9, -70), (9, -100), (-9, -100), (-9, -70)],   # corpo e collo
+        [(-15, -112), (15, -112), (15, -104), (-15, -104)],         # bordo
+    ], tagli=[[(-60, -32), (60, -32), (60, -27), (-60, -27)],       # livello del liquido
+              poligono(6, 6, (-10, -14)), poligono(4, 6, (12, -19))]),     # bollicine
     "shaker": stacca([
         [(-26, 0), (26, 0), (32, -64), (-32, -64)],                 # corpo
         [(-31, -70), (31, -70), (21, -94), (-21, -94)],             # filtro
@@ -114,7 +114,7 @@ OGGETTI["limone"] = [_anello, _spicchi]
 OGGETTI = {k: [scale(g, 1.25, 1.25, origin=(0, 0)) for g in v] for k, v in OGGETTI.items()}
 
 # Un oggetto per salto, sempre al centro della scena
-ORDINE = ["steccato", "coppetta", "shaker", "pinta", "bottiglia", "limone"]
+ORDINE = ["coppetta", "shaker", "beuta", "pinta", "bottiglia", "limone"]
 CENTRO = 540
 BLOCCHI = len(ORDINE) + 1   # l'ultimo resta vuoto e lampeggia
 INTERVALLO = 26             # fotogrammi tra l'entrata di una pecora e la successiva:
@@ -224,7 +224,7 @@ pagina = f"""<!doctype html>
   <g id="barra"></g>
 </svg>
 <script>
-const FPS = 12, F = {json.dumps(fotogrammi, separators=(",", ":"))};
+const FPS = {FPS}, F = {json.dumps(fotogrammi, separators=(",", ":"))};
 const BLOCCHI = {BLOCCHI}, PECORE = {len(ORDINE)};
 const TOTALE = F.length, $ = id => document.getElementById(id);
 const LB = 36, GAP = 10, X0 = 540 - (BLOCCHI * LB + (BLOCCHI - 1) * GAP) / 2;
@@ -275,5 +275,5 @@ if (!location.search.includes("registra")) {{
 """
 (ROOT / "motion").mkdir(exist_ok=True)
 (ROOT / "motion" / "loading.html").write_text(pagina)
-print(f"Creato motion/loading.html: {len(fotogrammi)} fotogrammi, {len(fotogrammi) / 12:.1f} s, "
+print(f"Creato motion/loading.html: {len(fotogrammi)} fotogrammi, {len(fotogrammi) / FPS:.1f} s, "
       f"{aria(STACCO):.0f} px d'aria sugli oggetti")
