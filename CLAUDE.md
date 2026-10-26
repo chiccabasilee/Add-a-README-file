@@ -22,12 +22,22 @@
   - `logo.svg` nero e `logo-bianco.svg` color crema, per sfondi scuri;
   - `logo-senza-archi.svg` e `logo-senza-archi-bianco.svg`, senza i due semicerchi accanto alla testa;
   - `marchio.svg`: solo la testa in un cerchio nero, usato per il QR e per l'icona del sito.
+  - `logo-scritta.svg` / `logo-scritta-bianco.svg` (solo BLACK SHEEP + payoff) e `logo-testa.svg` / `logo-testa-bianco.svg` (solo testa, senza cerchio): estratti dal logo definitivo, non ridisegnati. Uso da approvare in fase di sistema.
   - `pecora.svg` (nera), `pecora-bianco.svg` (crema) e `pecora-marchio.svg` (nel cerchio nero): pecora intera di profilo nello stile della testa. Si rigenerano con `tools/genera_pecora.py`.
+- **Logo definitivo**: confermato dal cliente; è lo stesso disegno da cui sono ricavati i vettoriali. Il file è un'immagine (PNG 2481×3508): per la stampa grande va chiesto il sorgente vettoriale a chi l'ha disegnato.
+- **Analisi del logo** (fase 2, `brand/analisi-logo.html` e `.png`):
+  - Formato 1,08 : 1. La testa occupa il 67% della larghezza e l'80% dell'altezza.
+  - Gli archi stanno su un cerchio centrato sull'asse della testa. La testa esce dal cerchio in alto e la punta del muso cade tra BLACK e SHEEP.
+  - Area di rispetto X = altezza della B di BLACK (11,4% del logo). Il payoff è alto la metà di X: il logo completo si legge fino a circa 110 px di altezza (25 mm in stampa); la testa da sola regge fino a 16 px.
+  - Angoli della testa: quasi verticali, inclinati di 5–15° (il muso converge); tetto a ±30–40°; orecchie a ±15°.
+  - Tre linguaggi nel logo: testa geometrica e precisa, archi a pennello secco, scritta a mano. Il sistema non deve aggiungere una quarta voce espressiva.
+- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (fatta, da discutere), 3 tre direzioni creative, 4 sviluppo della direzione scelta.
 - **Regole d'uso del logo (decise dal cliente)**:
   - Il disegno del logo non si modifica né si reinterpreta: il sistema grafico si adatta intorno a lui.
   - Le versioni create in questo progetto restano tutte valide e non vanno cancellate.
   - **Sul sito si usa il logo completo, con gli archi** (`logo.svg` / `logo-bianco.svg`).
   - **Il logo senza archi si usa solo per la foto profilo Instagram.**
+  - Il cliente permette di giocare con il logo (togliere gli archi, usare solo la scritta), ma di norma scritta e testa vanno insieme. Il cliente chiama la testa "di capra": va chiarito se è una pecora o una capra.
   - Da chiarire: se `marchio.svg` può restare come piccolo segno nel sito (icona del browser, barra in alto, fondo pagina) e al centro del QR, e come va usata la pecora intera.
 - **Colori**: sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
 - **Font**: Anton per i titoli da manifesto, Oswald per menu ed etichette (maiuscolo, spaziato), Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
