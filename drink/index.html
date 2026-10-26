@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Drink list · Black Sheep Menfi</title>
+  <meta name="description" content="La drink card di Black Sheep, cocktail &amp; food lab a Menfi: signature di Giacomo, classici, vini e birre.">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta property="og:title" content="Drink list · Black Sheep Menfi">
+  <meta property="og:description" content="Uscire dagli schemi, un drink alla volta. Menfi.">
+  <meta property="og:image" content="../assets/og.png">
+  <link rel="icon" href="../assets/marchio.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <link rel="preload" href="../assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/oswald-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="page-menu">
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__brand" href="../" aria-label="Black Sheep, home">
+        <img src="../assets/logo-scritta-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="193" height="40">
+      </a>
+      <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="panel">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav__panel" id="panel">
+        <nav class="nav__links" aria-label="Pagine">
+          <a href="../">Home</a>
+          <a href="../storia/">Storia</a>
+          <a href="../drink/" aria-current="page">Drink list</a>
+        </nav>
+        <div class="nav__extra">
+          <a class="btn btn--solid" href="tel:+393297730197">Prenota · 329 773 0197</a>
+          <a class="btn" href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <p class="preview" id="preview" hidden>Anteprima — drink list di esempio</p>
+
+  <h1 class="visually-hidden">Drink list di Black Sheep · Cocktail &amp; Food Lab</h1>
+
+  <nav class="tabs" id="tabs" aria-label="Categorie del menù"></nav>
+
+  <main class="mmain" id="menu"></main>
+
+  <section class="info" aria-label="Note e allergeni">
+    <p class="info__coperto" id="coperto"></p>
+    <details class="allergeni">
+      <summary>Allergeni</summary>
+      <p>Per qualsiasi informazione su allergeni e intolleranze chiedi al nostro staff.</p>
+      <ol>
+        <li>Cereali contenenti glutine</li>
+        <li>Crostacei</li>
+        <li>Uova</li>
+        <li>Pesce</li>
+        <li>Arachidi</li>
+        <li>Soia</li>
+        <li>Latte e lattosio</li>
+        <li>Frutta a guscio</li>
+        <li>Sedano</li>
+        <li>Senape</li>
+        <li>Semi di sesamo</li>
+        <li>Anidride solforosa e solfiti</li>
+        <li>Lupini</li>
+        <li>Molluschi</li>
+      </ol>
+    </details>
+  </section>
+
+
+  <section class="place" aria-labelledby="luogo">
+    <div class="wrap place__inner">
+      <div>
+        <p class="eyebrow" id="luogo">Il luogo</p>
+        <h2 class="place__title"><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero<br>Ognibene 30/32<br>Menfi</a></h2>
+        <div class="story story--wide">
+          <p>Antracite, pareti verdi e una griglia di alluminio che corre sopra il bancone e tiene su le piante.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <div>
+          <dt>Quando</dt>
+          <dd>Aperitivo tutti i giorni<br><span class="todo">orari da inserire</span></dd>
+        </div>
+        <div>
+          <dt>Prenota</dt>
+          <dd><a href="tel:+393297730197">329 773 0197</a></dd>
+        </div>
+        <div>
+          <dt>Seguici</dt>
+          <dd><a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">@black_sheep_menfi</a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <img class="foot__logo" src="../assets/logo-scritta.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2139" height="444">
+      <div class="foot__text">
+        <p>Via Calogero Ognibene 30/32, Menfi — <a href="tel:+393297730197">329 773 0197</a> — <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a></p>
+        <p class="foot__small">© 2026 Black Sheep · P.IVA da inserire</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="menu.js"></script>
+  <script src="app.js"></script>
+  <script src="../site.js"></script>
+</body>
+</html>

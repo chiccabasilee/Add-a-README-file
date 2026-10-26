@@ -11,7 +11,7 @@
     tape.appendChild(track);
   });
 
-  // Menu a tendina su telefono
+  // Menu ad hamburger a tutto schermo
   var nav = document.querySelector(".nav");
   var toggle = document.querySelector(".nav__toggle");
   if (nav && toggle) {
@@ -20,41 +20,13 @@
       toggle.setAttribute("aria-expanded", open);
       document.body.style.overflow = open ? "hidden" : "";
     });
-    nav.querySelectorAll(".nav__links a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        nav.classList.remove("nav--open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
-    });
-  }
-
-  // Home: food della settimana preso dallo stesso file del menù
-  var dishes = document.getElementById("dishes");
-  if (dishes && window.MENU) {
-    var food = window.MENU.sezioni.filter(function (s) { return s.id === "food"; })[0];
-    if (food) {
-      if (food.settimana) document.getElementById("week").textContent = "Settimana " + food.settimana;
-      food.categorie.forEach(function (cat) {
-        cat.voci.forEach(function (v) {
-          var li = document.createElement("li");
-          var left = document.createElement("div");
-          var name = document.createElement("strong");
-          name.textContent = v.nome;
-          left.appendChild(name);
-          if (v.descrizione) {
-            var d = document.createElement("span");
-            d.textContent = v.descrizione;
-            left.appendChild(d);
-          }
-          var price = document.createElement("em");
-          price.textContent = "€ " + v.prezzo;
-          li.appendChild(left);
-          li.appendChild(price);
-          dishes.appendChild(li);
-        });
-      });
-    }
+    var close = function () {
+      nav.classList.remove("nav--open");
+      toggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+    nav.querySelectorAll(".nav__panel a").forEach(function (a) { a.addEventListener("click", close); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
   }
 
   if (window.MENU && window.MENU.anteprima) {

@@ -1,6 +1,5 @@
-// Contenuto del menù. Per aggiornare un piatto o un prezzo basta modificare questo file.
+// Contenuto della drink list. Per aggiornare un piatto o un prezzo basta modificare questo file.
 // allergeni: numeri della legenda in fondo alla pagina (Reg. UE 1169/2011).
-// surgelato: true aggiunge l'asterisco "prodotto surgelato".
 
 window.MENU = {
   anteprima: true, // mettere false quando il menù è quello definitivo
@@ -9,7 +8,7 @@ window.MENU = {
 
   sezioni: [
     {
-      id: "drink", // il QR punta qui: /menu/#drink
+      id: "drink", // il QR punta alla pagina /drink/
       nome: "Drink list",
       categorie: [
         {
@@ -39,20 +38,6 @@ window.MENU = {
           nome: "Birre",
           voci: [
             { nome: "Nome birra", descrizione: "Stile · 0,4 l", prezzo: "0,00", allergeni: [1] }
-          ]
-        }
-      ]
-    },
-    {
-      id: "food",
-      nome: "Food",
-      settimana: "27 ottobre – 2 novembre", // da cambiare ogni settimana insieme ai piatti
-      categorie: [
-        {
-          nome: "Da condividere",
-          voci: [
-            { nome: "Nome piatto", descrizione: "Ingredienti principali", prezzo: "0,00", allergeni: [1, 3, 7] },
-            { nome: "Nome piatto", descrizione: "Ingredienti principali", prezzo: "0,00", allergeni: [1, 7], surgelato: true }
           ]
         }
       ]
