@@ -23,6 +23,12 @@
   - `logo-senza-archi.svg` e `logo-senza-archi-bianco.svg`, senza i due semicerchi accanto alla testa;
   - `marchio.svg`: solo la testa in un cerchio nero, usato per il QR e per l'icona del sito.
   - `pecora.svg` (nera), `pecora-bianco.svg` (crema) e `pecora-marchio.svg` (nel cerchio nero): pecora intera di profilo nello stile della testa. Si rigenerano con `tools/genera_pecora.py`.
+- **Regole d'uso del logo (decise dal cliente)**:
+  - Il disegno del logo non si modifica né si reinterpreta: il sistema grafico si adatta intorno a lui.
+  - Le versioni create in questo progetto restano tutte valide e non vanno cancellate.
+  - **Sul sito si usa il logo completo, con gli archi** (`logo.svg` / `logo-bianco.svg`).
+  - **Il logo senza archi si usa solo per la foto profilo Instagram.**
+  - Da chiarire: se `marchio.svg` può restare come piccolo segno nel sito (icona del browser, barra in alto, fondo pagina) e al centro del QR, e come va usata la pecora intera.
 - **Colori**: sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
 - **Font**: Anton per i titoli da manifesto, Oswald per menu ed etichette (maiuscolo, spaziato), Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
 - **Texture**: ardesia antracite, scurita del 30% circa. Sul sito è `assets/ardesia.jpg`, una piastrella specchiata 1000×2000 fatta dall'originale 500×1000: con la versione ad alta risoluzione sparirebbe l'effetto specchio ai lati.
