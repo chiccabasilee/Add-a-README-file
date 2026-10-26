@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<title>Analisi del logo · Black Sheep</title>
+<style>
+@font-face { font-family: Oswald; font-weight: 500; src: url(../assets/fonts/oswald-latin-500-normal.woff2); }
+@font-face { font-family: Inter; src: url(../assets/fonts/inter-latin-400-normal.woff2); }
+:root { --ink:#0d0d0d; --paper:#f4f2ee; --mut:#7b766e; --red:#d23c2a; }
+body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 Inter, sans-serif; }
+.page { width:1600px; padding:56px 64px 72px; box-sizing:border-box; }
+h1 { margin:0 0 6px; font:500 34px/1 Oswald; letter-spacing:.12em; text-transform:uppercase; }
+.sub { color:var(--mut); margin:0 0 40px; }
+h2 { margin:0 0 16px; font:500 15px/1 Oswald; letter-spacing:.22em; text-transform:uppercase; }
+h2 b { color:var(--red); font-weight:500; margin-right:10px; }
+.row { display:grid; gap:40px; margin-bottom:56px; }
+.r2 { grid-template-columns: 1.15fr 1fr; }
+.card { background:#fff; border:1px solid #e2ded7; padding:28px; position:relative; }
+.dark { background:var(--ink); color:#f2efe9; border-color:var(--ink); }
+.note { color:var(--mut); font-size:13px; margin:12px 0 0; }
+.dark .note { color:#9a958d; }
+.cfg { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+.cfg .card { display:grid; place-items:center; height:240px; padding:20px; }
+.cfg img { max-width:100%; max-height:150px; }
+.cfg .lab { position:absolute; left:16px; bottom:12px; font:500 11px/1 Oswald; letter-spacing:.2em; text-transform:uppercase; }
+.sizes { display:flex; align-items:flex-end; gap:36px; }
+.sizes figure { margin:0; text-align:center; font-size:12px; color:var(--mut); }
+.sizes figure img { display:block; margin:0 auto 8px; }
+.legend { font-size:13px; } .legend span { display:inline-block; width:22px; border-top:2px dashed var(--red); vertical-align:middle; margin-right:8px; }
+</style></head>
+<body><div class="page">
+<h1>Black Sheep — analisi del logo</h1>
+<p class="sub">Logo definitivo, misurato sul file 2481×3508 fornito dal cliente. Il disegno non viene modificato: queste tavole mostrano solo come è costruito e come può essere usato.</p>
+
+<div class="row r2">
+  <div class="card">
+    <h2><b>01</b>Costruzione</h2>
+    <svg viewBox="-260 -340 2663 2595" width="100%">
+      <rect x="-223" y="-223" width="2589" height="2441" fill="none" stroke="#d23c2a" stroke-width="5" stroke-dasharray="22 16"/>
+      <image href="../assets/logo.svg" x="0" y="0" width="2143" height="1995"/>
+      <circle cx="1043" cy="1161" r="974" fill="none" stroke="#d23c2a" stroke-width="6" stroke-dasharray="26 18"/>
+      <line x1="1041" y1="-160" x2="1041" y2="2150" stroke="#d23c2a" stroke-width="5"/>
+      <line x1="-150" y1="1569" x2="2290" y2="1569" stroke="#d23c2a" stroke-width="4" stroke-dasharray="10 10"/>
+      <rect x="22" y="1576" width="40" height="223" fill="#d23c2a" opacity=".85"/>
+      <text x="80" y="1700" fill="#d23c2a" font-family="Oswald" font-size="64">X</text>
+      <text x="-223" y="-260" fill="#d23c2a" font-family="Oswald" font-size="58" letter-spacing="6">AREA DI RISPETTO = X (ALTEZZA DELLA B)</text>
+    </svg>
+    <p class="legend"><span></span>gli archi appartengono a un cerchio centrato sull'asse della testa · la testa esce dal cerchio in alto · la punta del muso cade nello spazio tra BLACK e SHEEP</p>
+  </div>
+  <div>
+    <div class="card dark" style="margin-bottom:24px">
+      <h2><b>02</b>Proporzioni</h2>
+      <p style="margin:0">Formato quasi quadrato, 1,08 : 1.<br>
+      Testa: 67% della larghezza, 80% dell'altezza.<br>
+      BLACK SHEEP: tutta la larghezza, lettere alte l'11,4% del logo (= X).<br>
+      Payoff: lettere alte il 5,7% del logo, la metà di X.<br>
+      Archi: 95% della larghezza, chiusi dalla testa in alto e dalla scritta in basso.</p>
+      <p class="note">Il payoff è l'elemento più fragile: sotto i 110 px di altezza del logo (circa 25 mm in stampa) le sue lettere scendono sotto i 6 px e non si leggono più.</p>
+    </div>
+    <div class="card">
+      <h2><b>03</b>Famiglia di angoli della testa</h2>
+      <svg viewBox="0 0 900 430" width="100%">
+        <image href="../assets/logo-testa.svg" x="20" y="0" width="390" height="430"/>
+        <g font-family="Oswald" font-size="22" fill="#0d0d0d">
+          <line x1="470" y1="70" x2="540" y2="20" stroke="#d23c2a" stroke-width="4"/><text x="560" y="52">±30–40° — tetto della testa (10%)</text>
+          <line x1="470" y1="170" x2="540" y2="152" stroke="#d23c2a" stroke-width="4"/><text x="560" y="168">±15° — orecchie (6%)</text>
+          <line x1="490" y1="320" x2="520" y2="210" stroke="#d23c2a" stroke-width="4"/><text x="560" y="276">75–105° — muso che si stringe (71%)</text>
+          <text x="470" y="380" fill="#7b766e" font-family="Inter" font-size="18">Percentuali: quota della lunghezza dei lati diritti.</text>
+        </g>
+      </svg>
+      <p class="note">Quasi tutte le linee lunghe sono verticali inclinate di 5–15°: il muso converge verso una punta. Le diagonali a 30° del tetto e le orecchie quasi orizzontali danno le altre due direzioni.</p>
+    </div>
+  </div>
+</div>
+
+<h2><b>04</b>Configurazioni consentite (estratte, non ridisegnate)</h2>
+<div class="cfg" style="margin-bottom:16px">
+  <div class="card dark"><img src="../assets/logo-bianco.svg" alt=""><span class="lab">Completo · sito, insegna, menu</span></div>
+  <div class="card dark"><img src="../assets/logo-senza-archi-bianco.svg" alt=""><span class="lab">Senza archi · profilo Instagram</span></div>
+  <div class="card dark"><img src="../assets/logo-scritta-bianco.svg" alt="" style="max-width:88%"><span class="lab">Solo scritta · da approvare</span></div>
+  <div class="card dark"><img src="../assets/logo-testa-bianco.svg" alt="" style="max-height:130px"><span class="lab">Solo testa · da approvare</span></div>
+</div>
+<div class="cfg" style="margin-bottom:56px">
+  <div class="card"><img src="../assets/logo.svg" alt=""></div>
+  <div class="card"><img src="../assets/logo-senza-archi.svg" alt=""></div>
+  <div class="card"><img src="../assets/logo-scritta.svg" alt="" style="max-width:88%"></div>
+  <div class="card"><img src="../assets/logo-testa.svg" alt="" style="max-height:130px"></div>
+</div>
+
+<div class="row r2" style="margin-bottom:0">
+  <div class="card">
+    <h2><b>05</b>Prova di leggibilità a schermo</h2>
+    <div class="sizes">
+      <figure><img src="../assets/logo.svg" style="height:160px">160 px</figure>
+      <figure><img src="../assets/logo.svg" style="height:110px">110 px · limite payoff</figure>
+      <figure><img src="../assets/logo.svg" style="height:60px">60 px</figure>
+      <figure><img src="../assets/logo-testa.svg" style="height:48px">testa 48</figure>
+      <figure><img src="../assets/logo-testa.svg" style="height:24px">24</figure>
+      <figure><img src="../assets/logo-testa.svg" style="height:16px">16</figure>
+    </div>
+    <p class="note">A 60 px il payoff si impasta e i bordi degli archi diventano rumore; la testa da sola resta riconoscibile anche a 16 px.</p>
+  </div>
+  <div class="card dark">
+    <h2><b>06</b>Tre linguaggi in un solo segno</h2>
+    <p style="margin:0">1. <strong>Testa</strong>: geometria netta, sfaccettata, simmetrica, con sottili tagli in negativo.<br>
+    2. <strong>Archi</strong>: pennello secco, bordi sfrangiati, imperfetti.<br>
+    3. <strong>Scritta</strong>: BLACK SHEEP a mano, irregolare e un po' graffiante; payoff più morbido e rotondo, tra due trattini a pennello.</p>
+    <p class="note">La tensione tra precisione (lab) e gesto (pecora nera) è la cosa più interessante del logo. Il sistema non deve aggiungere una quarta voce espressiva.</p>
+  </div>
+</div>
+</div></body></html>

@@ -15,11 +15,18 @@
   }
 
   data.sezioni.forEach(function (sez, si) {
-    if (si > 0) tabs.appendChild(el("span", "tabs__sep"));
+    if (si > 0) {
+      tabs.appendChild(el("span", "tabs__sep"));
+      var tape = el("div", "tape group-tape", "Black Sheep");
+      tape.setAttribute("data-text", "Black Sheep — Cocktail & Food Lab");
+      tape.setAttribute("aria-hidden", "true");
+      menu.appendChild(tape);
+    }
 
     var group = el("section", "group");
     group.id = sez.id;
     group.appendChild(el("h2", "group__title", sez.nome));
+    if (sez.settimana) group.appendChild(el("p", "week group__week", "Settimana " + sez.settimana));
 
     sez.categorie.forEach(function (cat) {
       var id = sez.id + "-" + slug(cat.nome);
