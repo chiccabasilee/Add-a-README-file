@@ -41,3 +41,18 @@
 - Tre parole sì e tre no; riferimenti fuori dal mondo dei bar.
 - Materiali prioritari oltre al sito.
 - Bianco puro o bianco caldo.
+
+## Ricerca sul territorio (26 ottobre, ricerca web, risultati scarsi)
+- **Menfi**: in rete compaiono soprattutto wine pub con aperitivo (per esempio Wood Wine pub) e bar d'hotel o di resort vinicoli (Planeta La Foresteria). Nessun cocktail bar di mixology riconoscibile: coerente con quanto dice il cliente, ma non è una verifica completa.
+- **Sciacca** (la piazza più vicina):
+  - Scirocco Bar, Verdura Resort: mixology "teatrale" con ingredienti siciliani, fascia alta e da resort.
+  - Eos Wine: bar specializzato in gin tonic (oltre 300 etichette).
+  - Skalunata Cafè Retrò: aperitivo in stile rétro.
+- **Cliché della categoria da evitare** (mia lettura, non verificata sui singoli locali):
+  - speakeasy vintage: lampadine a filamento, oro art déco, baffi;
+  - scritte a gesso;
+  - neon con frasi;
+  - tropicale/tiki;
+  - rustico da cantina;
+  - Sicilia da cartolina: maioliche, limoni, Trinacria, fichi d'India;
+  - lusso da resort, con serif dorati.
