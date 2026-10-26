@@ -17,6 +17,7 @@
   - `logo.svg` nero e `logo-bianco.svg` color crema, per sfondi scuri;
   - `logo-senza-archi.svg` e `logo-senza-archi-bianco.svg`, senza i due semicerchi accanto alla testa;
   - `marchio.svg`: solo la testa in un cerchio nero, usato per il QR e per l'icona del sito.
+  - `pecora.svg` (nera), `pecora-bianco.svg` (crema) e `pecora-marchio.svg` (nel cerchio nero): pecora intera di profilo nello stile della testa. Si rigenerano con `tools/genera_pecora.py`.
 - **Colori**: sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
 - **Font**: Oswald per i titoli (maiuscolo, spaziato) e Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
 - **Texture**: ardesia antracite, scurita del 30% circa (ricevuta a 500×1000; serve la versione ad alta risoluzione per usarla sul sito).
