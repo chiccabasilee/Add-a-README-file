@@ -80,7 +80,7 @@
 - `style.css`: grafica comune alle pagine.
 - `tools/genera_qr.py`: crea il QR in SVG (libreria segno) con `marchio.svg` al centro e correzione d'errore H. Le prove di lettura con OpenCV vanno bene fino a 110 px.
   - Il QR definitivo **non è ancora stato generato**: si fa quando il dominio è scelto.
-- `motion/`: animazione "loading" per annunciare l'apertura: su sfondo nero la pecora crema attraversa lo schermo da sinistra a destra saltando a scatti; sotto, scritta LOADING e barra a blocchi.
+- `motion/`: animazione "loading" per annunciare l'apertura, stile vecchio videogioco (12 fotogrammi al secondo). Su sfondo nero la pecora crema attraversa lo schermo da sinistra a destra, galoppando, per tre volte, e salta sei ostacoli come le pecore che si contano per dormire: steccato, coppetta, shaker, pinta, bottiglia, fetta di limone. A ogni salto compare il numero e si accende un blocco della barra sotto LOADING; l'ultimo blocco lampeggia.
   - `loading.html` si crea con `tools/genera_loading.py`, che usa le pose di `forme_pecora()` in `tools/genera_pecora.py`.
   - `loading-quadrato.mp4` (1080×1080) e `loading-storia.mp4` (1080×1920) si registrano con `node tools/registra_loading.js`.
 - `social/instagram-profilo.png`: foto profilo Instagram 1080×1080, già consegnata.
