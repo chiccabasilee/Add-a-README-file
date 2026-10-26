@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Menù · Black Sheep Menfi</title>
+  <meta name="description" content="Il menù del Black Sheep, cocktail bar · food & wine a Menfi.">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta property="og:title" content="Menù · Black Sheep Menfi">
+  <meta property="og:description" content="Cocktail bar · Food &amp; Wine — Stand out like a Black Sheep">
+  <meta property="og:image" content="assets/og.png">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <img class="hero__logo" src="assets/logo.svg" alt="Black Sheep" width="132" height="132">
+    <h1 class="hero__title">Black Sheep</h1>
+    <p class="hero__sub">Cocktail bar · Food &amp; Wine</p>
+    <p class="hero__motto">Stand out like a Black Sheep</p>
+  </header>
+
+  <p class="preview" id="preview" hidden>Anteprima grafica — contenuti di esempio</p>
+
+  <nav class="tabs" id="tabs" aria-label="Categorie del menù"></nav>
+
+  <main id="menu"></main>
+
+  <footer class="info">
+    <p class="info__coperto" id="coperto"></p>
+    <p class="info__note"><span aria-hidden="true">*</span> Prodotto surgelato o congelato all'origine.</p>
+    <details class="allergeni">
+      <summary>Allergeni</summary>
+      <p>Per qualsiasi informazione su allergeni e intolleranze chiedi al nostro staff.</p>
+      <ol>
+        <li>Cereali contenenti glutine</li>
+        <li>Crostacei</li>
+        <li>Uova</li>
+        <li>Pesce</li>
+        <li>Arachidi</li>
+        <li>Soia</li>
+        <li>Latte e lattosio</li>
+        <li>Frutta a guscio</li>
+        <li>Sedano</li>
+        <li>Senape</li>
+        <li>Semi di sesamo</li>
+        <li>Anidride solforosa e solfiti</li>
+        <li>Lupini</li>
+        <li>Molluschi</li>
+      </ol>
+    </details>
+
+    <div class="info__contatti">
+      <a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32 · Menfi</a>
+      <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">@black_sheep_menfi</a>
+    </div>
+  </footer>
+
+  <script src="menu.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

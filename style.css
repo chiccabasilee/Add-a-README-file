@@ -1,0 +1,149 @@
+:root {
+  --bg: #0d0d0d;
+  --surface: #161616;
+  --line: #2a2a2a;
+  --text: #f2efe9;
+  --muted: #9a958d;
+  --accent: #f2efe9;
+  --display: "Oswald", "Arial Narrow", sans-serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px/1.5 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* Intestazione */
+.hero {
+  text-align: center;
+  padding: calc(48px + env(safe-area-inset-top)) 24px 32px;
+}
+.hero__logo { display: block; margin: 0 auto 20px; width: 132px; height: 132px; }
+.hero__title {
+  margin: 0;
+  font: 600 2.4rem/1 var(--display);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.hero__sub {
+  margin: 12px 0 0;
+  font: 400 .8rem/1.4 var(--display);
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__motto { margin: 20px 0 0; font-style: italic; color: var(--muted); font-size: .9rem; }
+
+.preview {
+  margin: 0 16px 16px;
+  padding: 8px 12px;
+  border: 1px dashed var(--muted);
+  border-radius: 6px;
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+}
+
+/* Barra categorie */
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  background: rgba(13, 13, 13, .92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs__item {
+  flex: none;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 500 .78rem/1 var(--display);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.tabs__item.is-active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+/* Menu */
+main { max-width: 640px; margin: 0 auto; padding: 8px 16px 24px; }
+
+.cat { padding: 32px 0 8px; }
+.cat__title {
+  margin: 0;
+  font: 500 1.5rem/1.1 var(--display);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cat__title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.cat__note { margin: 6px 0 0; color: var(--muted); font-size: .88rem; }
+
+.items { list-style: none; margin: 16px 0 0; padding: 0; }
+.item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.item__name { font-weight: 500; font-size: 1.02rem; }
+.item__frozen { margin-left: 2px; color: var(--muted); }
+.item__price {
+  flex: none;
+  font: 500 1rem/1 var(--display);
+  letter-spacing: .04em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.item__desc { margin: 4px 0 0; color: var(--muted); font-size: .9rem; }
+.item__all { margin: 4px 0 0; color: var(--muted); font-size: .75rem; letter-spacing: .02em; }
+
+/* Piè di pagina */
+.info {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px calc(40px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .85rem;
+}
+.info p { margin: 0 0 8px; }
+.info__coperto:empty { display: none; }
+
+.allergeni { margin: 16px 0; border: 1px solid var(--line); border-radius: 8px; padding: 0 16px; }
+.allergeni summary {
+  cursor: pointer;
+  padding: 14px 0;
+  font: 500 .8rem/1 var(--display);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.allergeni ol { margin: 0 0 16px; padding-left: 22px; columns: 2; column-gap: 24px; }
+.allergeni li { break-inside: avoid; margin-bottom: 4px; }
+
+.info__contatti { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 28px; text-align: center; }
+.info__contatti a { text-decoration: none; color: var(--text); }
+.info__contatti a:hover { text-decoration: underline; }
+
+@media (max-width: 360px) {
+  .allergeni ol { columns: 1; }
+}
