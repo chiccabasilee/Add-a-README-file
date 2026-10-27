@@ -1,6 +1,7 @@
 // Contenuto della drink list. Per aggiornare un piatto o un prezzo basta modificare questo file.
 // allergeni: numeri della legenda in fondo alla pagina (Reg. UE 1169/2011).
-// preferito: true aggiunge l'adesivo "Il preferito di Giacomo".
+// etichette: un pin tondo sulla voce, uno solo per drink:
+//   "preferito" (il preferito di Giacomo), "nuovo", "analcolico", "casa" (drink della casa).
 
 window.MENU = {
   anteprima: true, // mettere false quando il menù è quello definitivo
@@ -16,9 +17,9 @@ window.MENU = {
           nome: "Signature",
           nota: "I nostri drink, creati al banco",
           voci: [
-            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00", preferito: true },
-            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00" },
-            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00" }
+            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00", etichette: ["preferito"] },
+            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00", etichette: ["nuovo"] },
+            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00", etichette: ["casa"] }
           ]
         },
         {
@@ -26,6 +27,12 @@ window.MENU = {
           voci: [
             { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente", prezzo: "0,00" },
             { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente", prezzo: "0,00" }
+          ]
+        },
+        {
+          nome: "Analcolici",
+          voci: [
+            { nome: "Nome analcolico", descrizione: "Ingrediente, ingrediente", prezzo: "0,00", etichette: ["analcolico"] }
           ]
         },
         {

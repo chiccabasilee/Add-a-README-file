@@ -275,20 +275,19 @@ html:has(.page-drink) { scroll-padding-top: calc(var(--nav-h) + 64px); }
   white-space: nowrap;
   pointer-events: none;
 }
-.sticker {
-  display: inline-block;
-  padding: 6px 10px 5px;
-  border-radius: 999px;
-  background: var(--fluo);
-  color: var(--nero);
-  font-weight: 800;
-  font-size: .68rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  transform: rotate(-4deg);
-  white-space: nowrap;
-}
-.item__head .sticker { margin-left: 8px; vertical-align: 2px; }
+/* Pin tondi con la scritta in cerchio */
+.pin-box { display: block; }
+.pin-box svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .35)); }
+.pin__anello { transform-box: view-box; transform-origin: 50% 50%; }
+.pin-ancora { position: relative; z-index: 5; height: 0; }
+.pin-gira { position: absolute; right: 5%; top: calc(-1 * clamp(70px, 9vw, 130px)); width: clamp(120px, 15vw, 200px); transform: rotate(-8deg); }
+@media (max-width: 759px) { .hero__inner { padding-bottom: 104px; } }
+.pin-gira .pin__anello { animation: gira 18s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+.item--pin { position: relative; min-height: 118px; }
+.item--pin .item__desc, .item--pin .item__all { max-width: calc(100% - 100px); }
+.item__pin { position: absolute; right: -4px; top: 40px; width: 88px; transform: rotate(-10deg); }
+.item--pin:nth-child(even) .item__pin { transform: rotate(8deg); }
 
 /* ——— Movimento: testi che entrano, scarabocchi che si disegnano ——— */
 .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
@@ -305,4 +304,5 @@ html:has(.page-drink) { scroll-padding-top: calc(var(--nav-h) + 64px); }
 @keyframes entra { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal], .js .mega .riga > span, .js .nota, .js .hero__logo { opacity: 1; transform: none; transition: none; animation: none; }
+  .pin-gira .pin__anello { animation: none; }
 }

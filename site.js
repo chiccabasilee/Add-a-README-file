@@ -42,12 +42,18 @@
       p.style.transition = "stroke-dashoffset " + Math.min(1.2, .4 + len / 900) + "s ease " + (.25 + i * .18) + "s";
     });
   };
-  var caricati = Array.prototype.map.call(document.querySelectorAll("[data-doodle]"), function (el) {
-    el.classList.add("doodle");
-    return fetch(base + "assets/scarabocchi/" + el.getAttribute("data-doodle") + ".svg")
-      .then(function (r) { return r.text(); })
-      .then(function (svg) { el.innerHTML = svg; disegna(el); });
-  });
+  var inserisci = function (selettore, cartella, classe, dopo) {
+    return Array.prototype.map.call(document.querySelectorAll(selettore), function (el) {
+      el.classList.add(classe);
+      var nome = el.getAttribute(selettore.slice(1, -1));
+      return fetch(base + "assets/" + cartella + "/" + nome + ".svg")
+        .then(function (r) { return r.text(); })
+        .then(function (svg) { el.innerHTML = svg; if (dopo) dopo(el); });
+    });
+  };
+  // Pin tondi con la scritta in cerchio (assets/pin), inseriti allo stesso modo
+  var caricati = inserisci("[data-doodle]", "scarabocchi", "doodle", disegna)
+    .concat(inserisci("[data-pin]", "pin", "pin-box"));
 
   // Quando un elemento entra nello schermo: testi che salgono, scarabocchi che si disegnano
   var mostra = function (el) {

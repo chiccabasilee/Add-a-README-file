@@ -44,7 +44,13 @@
   - **gli archi a pennello del logo**, in **verde fluo** e **accorciati** (`assets/archi-fluo.svg`, la parte centrale degli archi), fanno da segno a mano: racchiudono parole e pulsanti come parentesi tonde (classe `.arc`), invece dell'ellisse di Sifón. Gli originali `archi.svg` e `archi-bianco.svg` restano;
   - la **fascia che scorre** è verde fluo, con la testa della pecora nera come separatore;
   - **scarabocchi a mano in verde fluo** sopra le foto e accanto ai testi, ispirati alle immagini del cliente con disegni a pennarello. Sono in `assets/scarabocchi/`, creati da `tools/genera_scarabocchi.py`: freccia, aureola, gocce, fiamme, stelle, shaker (Giacomo), coppa, cerchio, sottolineatura, pecorella (illustrazione, non il logo). Si mettono con `<span data-doodle="nome" style="posizione">` e si disegnano quando entrano nello schermo;
-  - **note scritte** in corsivo fluo (classe `.nota`, per esempio "il capo del banco", "new entry!") e l'adesivo **"Il preferito di Giacomo"** (classe `.sticker`; nella drink list basta `preferito: true` in `drink/menu.js`);
+  - **note scritte** in corsivo fluo (classe `.nota`, per esempio "il capo del banco", "new entry!");
+  - **pin tondi con la scritta in cerchio** (ispirati agli adesivi delle immagini del cliente, testi in italiano), in `assets/pin/`, creati da `tools/genera_pin.py`:
+    - `siciliano`: "100% siciliano · cocktail & food lab", con la Sicilia tutta nera che beve un drink con la cannuccia e Menfi come puntino verde. È bianco perché in home sta a cavallo della fascia verde, e l'anello gira di continuo.
+    - Nella drink list, al posto delle scritte normali: `preferito` (il preferito di Giacomo, con lo shaker), `nuovo` (appena uscito dal banco), `analcolico` (0%, zero alcol), `casa` (drink della casa, con la testa del logo).
+    - Si usano con `<span data-pin="nome">`. Nella drink list basta scrivere, per esempio, `etichette: ["preferito"]` in `drink/menu.js`: un solo pin per drink.
+    - La Sicilia viene da Natural Earth (pubblico dominio, pacchetto `world-atlas`), salvata in `tools/dati/sicilia.json`.
+    - I testi dei pin sono testi veri in Archivo: funzionano solo inseriti nella pagina. Per stamparli vanno convertiti in tracciati.
   - frasi e testi sono nostri: niente traduzioni delle frasi di Sifón o Cantine.
 ## Identità visiva
 - **Logo nuovo** "Black Sheep · Cocktail & Food Lab", vettoriale, in `assets/`:
@@ -123,7 +129,7 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Commenti sulla versione con archi fluo, scarabocchi e animazioni (mandata come video). Il cliente vuole cambiare alcune frasi: chiedere quali.
+1. Commenti su pin, archi fluo, scarabocchi e animazioni (mandati come video). Il cliente vuole cambiare alcune frasi: chiedere quali.
 2. Drink list vera: drink, prezzi, coperto, allergeni.
 3. Come gestire i contatti (per ora: telefono per prenotare).
 4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).

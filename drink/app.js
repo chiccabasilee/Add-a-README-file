@@ -41,7 +41,7 @@
         var head = el("div", "item__head");
         var name = el("span", "item__name", v.nome);
         if (v.surgelato) name.appendChild(el("span", "item__frozen", "*"));
-        if (v.preferito) name.appendChild(el("span", "sticker", "Il preferito di Giacomo"));
+
         head.appendChild(name);
         head.appendChild(el("span", "item__price", "€ " + v.prezzo));
         li.appendChild(head);
@@ -49,6 +49,13 @@
         if (v.allergeni && v.allergeni.length) {
           li.appendChild(el("p", "item__all", "Allergeni: " + v.allergeni.join(" · ")));
         }
+        // etichette tonde (pin): preferito, nuovo, analcolico, casa
+        (v.etichette || []).slice(0, 1).forEach(function (nome) {
+          var pin = el("span", "item__pin");
+          pin.setAttribute("data-pin", nome);
+          li.appendChild(pin);
+          li.classList.add("item--pin");
+        });
         list.appendChild(li);
       });
       sec.appendChild(list);
