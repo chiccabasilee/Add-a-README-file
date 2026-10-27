@@ -14,22 +14,36 @@
 - **2 novembre**: servizio fotografico (locale, drink e ritratti di Giacomo e Domenico) e piccola intervista ai due. Il sito va imbastito ora e corretto man mano.
 - Pubblico 25–40 anni che vuole bere bene in un posto amichevole.
 - **Riposizionamento**: l'anno scorso era visto come discoteca solo per un'ora a notte nel weekend; ora deve essere un locale di qualità aperto dal pomeriggio. Evitare i codici da discoteca.
-- Le foto le fa un fotografo già istruito dal cliente; le ispirazioni sono in arrivo.
+- Le foto le fa un fotografo già istruito dal cliente. **Stile fotografico**: flash diretto, tra professionale e giovanile; mani in azione, inquadrature strette, rossi e ambre dei drink.
 
 ## Obiettivo
 - Sito completo su un dominio proprio, che il locale comprerà (per esempio blacksheepmenfi.it).
 - QR sui tavoli che porta direttamente alla drink list: `https://<dominio>/drink/`.
-- **Struttura decisa dal cliente**: tre pagine che si aprono dal menu ad hamburger: **Home**, **Storia**, **Drink list**.
-  - Tolte le pagine Food (il menu food settimanale non va sul sito) e Sabato.
-  - **Il luogo** sta in fondo a ogni pagina, con indirizzo, orari, telefono **per prenotare** e Instagram. I contatti sono ancora da definire meglio.
+- **Struttura decisa dal cliente** (27 ottobre): due pagine, aperte dal menu ad hamburger.
+  - **Home**, con dentro **la storia** più in basso (ancora `#storia`).
+  - **Drink list** con i prezzi (`/drink/`).
+  - Niente pagine Food, Sabato o Storia separata. **Il luogo** (indirizzo, orari, telefono per prenotare, Instagram) sta in fondo a ogni pagina. I contatti sono ancora da definire meglio.
+- **Elementi obbligatori** indicati dal cliente: base nera/antracite; foto flash; storia in home; pagina drink con prezzi; **una fascia che scorre** con "ogni settimana un menu food diverso" e frasi simili.
 - Il cliente vorrebbe vedere il sito come artefatto di Claude: non si pubblica perché porta nome e logo di un'attività reale. Si lavora sui file e si mandano anteprime.
-- Stile **molto grafico**, sul modello di https://www.freniefrizioni.com/bar/ (dominio ora consentito nella rete dell'ambiente). Da lì abbiamo preso:
-  - nero più un solo colore (loro giallo, noi crema);
-  - nastri che scorrono, anche inclinati sopra la foto d'apertura;
-  - titoli enormi e ruotati, frasi grandi in maiuscolo;
-  - foto e testo sovrapposti in modo asimmetrico;
-  - il simbolo ricorrente (per noi la pecora) e il fondo pagina tutto a colore.
 
+## Direzione grafica attuale (27 ottobre)
+- Il cliente ha **scartato le tre direzioni** della fase 3 (`brand/direzioni.md`) e ha mandato ispirazioni proprie:
+  - siti di Sifón (Madrid, il preferito) e Cantine;
+  - un bar con cartellini bianchi su nero (Dolges);
+  - due locandine: titolo gigante sopra la foto (Estadio) e foto tagliata ad angoli (Heat).
+- Regola del cliente: **ispirarsi a Sifón senza copiarlo**.
+- Tratti presi dalle ispirazioni:
+  - fondo scuro uniforme e foto flash a tutta pagina;
+  - titoli giganti in un bastone larghissimo e nerissimo;
+  - frasi grandi in maiuscolo leggero;
+  - una riga in corsivo serif;
+  - tre foto con didascalia;
+  - fondo pagina su foto.
+- **Cosa la rende nostra**:
+  - in apertura c'è il **logo completo** a mano, non una scritta tipografica;
+  - **gli archi a pennello del logo** (`assets/archi.svg`, `archi-bianco.svg`, estratti dal logo) fanno da segno a mano: racchiudono parole e pulsanti, come le parentesi tonde (classe `.arc`), invece dell'ellisse disegnata di Sifón;
+  - la **fascia che scorre** è bianca, con la testa della pecora come separatore;
+  - frasi e testi sono nostri: niente traduzioni delle frasi di Sifón o Cantine.
 ## Identità visiva
 - **Logo nuovo** "Black Sheep · Cocktail & Food Lab", vettoriale, in `assets/`:
   - `logo.svg` nero e `logo-bianco.svg` color crema, per sfondi scuri;
@@ -44,8 +58,7 @@
   - Area di rispetto X = altezza della B di BLACK (11,4% del logo). Il payoff è alto la metà di X: il logo completo si legge fino a circa 110 px di altezza (25 mm in stampa); la testa da sola regge fino a 16 px.
   - Angoli della testa: quasi verticali, inclinati di 5–15° (il muso converge); tetto a ±30–40°; orecchie a ±15°.
   - Tre linguaggi nel logo: testa geometrica e precisa, archi a pennello secco, scritta a mano. Il sistema non deve aggiungere una quarta voce espressiva.
-- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (domande inviate, risposte in attesa), 2 analisi logo (**approvata**), 3 tre direzioni creative (**presentate**, vedi `brand/direzioni.md`: A Fuori dal gregge, B Drink Card N°, C Partenze; in attesa della scelta del cliente), 4 sviluppo della direzione scelta.
-  - Indicazione del cliente per la fase 3: andare oltre gli spunti ricavati dal logo, verso qualcosa di **più originale e con un effetto grafico molto forte**.
+- **Fasi del progetto di identità** (il cliente approva ogni passaggio): 1 brief (fatto), 2 analisi logo (**approvata**), 3 tre direzioni creative (**scartate**, vedi sopra), 4 la direzione nata dalle ispirazioni del cliente, applicata subito al sito (**in attesa di commenti**).
 - **Regole d'uso del logo (decise dal cliente)**:
   - Il disegno del logo non si modifica né si reinterpreta: il sistema grafico si adatta intorno a lui.
   - Le versioni create in questo progetto restano tutte valide e non vanno cancellate.
@@ -60,22 +73,34 @@
     - solo testa: usi piccoli e "da firma" (icona del browser, QR, timbri, sottobicchieri, adesivi, ghiaccio stampato).
   - **Colori del logo approvati**: nero e bianco sono i colori principali; anche l'antracite, che è il colore di tutto il locale.
   - Da chiarire: come va usata la pecora intera di profilo (personaggio/illustrazione, mai come secondo marchio).
-- **Colori** (sito attuale, da rivedere nella fase 3): sfondo `#0d0d0d`, testo crema `#f2efe9`, grigio secondario `#9a958d`, linee `#2a2a2a`.
-  - Antracite misurata sulle superfici: ardesia `#4c4c4c` in originale, `#353535` scurita del 30%. L'intonaco della prima foto è più caldo, circa `#574a38`.
-- **Font**: Anton per i titoli da manifesto, Oswald per menu ed etichette (maiuscolo, spaziato), Inter per il testo. Sono ospitati in `assets/fonts/` con licenza OFL, quindi nessuna richiesta a Google e nessun banner cookie.
-- **Texture**: ardesia antracite, scurita del 30% circa. Sul sito è `assets/ardesia.jpg`, una piastrella specchiata 1000×2000 fatta dall'originale 500×1000: con la versione ad alta risoluzione sparirebbe l'effetto specchio ai lati.
+- **Colori**: nero `#0D0D0D` (barra, menu, fondo pagina), antracite `#171717` (sfondo delle pagine), antracite chiaro `#262626`, bianco `#F4F4F2` (testi e fascia), grigio `#8C8C88` (testi secondari). Niente colori d'accento: il colore arriva dalle foto.
+  - Antracite misurata sulle superfici del locale: ardesia `#4c4c4c` in originale, `#353535` scurita del 30%. Il verde delle pareti non è ancora misurato.
+- **Font** (ospitati in `assets/fonts/`, licenza OFL, nessuna richiesta a Google):
+  - **Archivo** variabile per tutto: titoli giganti in larghezza 125% e peso 900, frasi in maiuscolo peso 300, testi peso 400.
+  - **Instrument Serif corsivo** solo per una riga per sezione.
+  - Oswald 600 resta solo per l'animazione `motion/`; Inter e Oswald 500 solo per la tavola `brand/analisi-logo`.
+- **Texture**: `assets/ardesia.jpg` (ardesia scurita, piastrella specchiata) resta per la foto profilo Instagram; il nuovo sito non la usa.
 
 ## Stato del codice
 - Repository `chiccabasilee/Add-a-README-file`, branch `claude/qr-code-restaurant-menu-2vl2hr`.
 - Pubblicazione prevista su GitHub Pages con il dominio personalizzato.
-- `index.html` (home): apertura su ardesia con logo e due nastri inclinati, **storia**, **dietro al banco** (Giacomo e Domenico), nastri, **luogo**, **drink list**, **food della settimana**, pecora, fondo pagina crema.
-  - La storia è il testo del cliente sistemato nel tono (proposto in chat, il cliente ha chiesto di imbastire e correggere strada facendo). Claim corto: "Uscire dagli schemi, un drink alla volta".
-  - Il food della settimana in home è letto da `menu/menu.js`, quindi si aggiorna in un posto solo.
-  - I testi sono bozze scritte senza informazioni dal cliente; le foto sono riquadri segnaposto.
-- `site.js`: riempie i nastri che scorrono e apre/chiude il menu ad hamburger (anche con Esc).
-- `drink/`: pagina della drink list, pensata per il telefono (ci arriva il QR).
+- Barra, menu ad hamburger, fascia e fondo pagina sono ripetuti in `index.html` e `drink/index.html`: se si cambiano, vanno cambiati in entrambe.
+  - Barra: "Menu" a sinistra, logo solo scritta al centro (compare dopo l'apertura), "Prenota" tra gli archi a destra.
+  - Menu ad hamburger a tutto schermo: Home, La storia, Drink list, poi Prenota, Instagram e indirizzo.
+- `index.html` (home), in ordine:
+  - apertura con foto flash a tutto schermo e logo completo bianco;
+  - fascia che scorre;
+  - intro con frasi grandi;
+  - tre foto con didascalia;
+  - **storia** (`#storia`) con titolo gigante "Uscire dagli schemi" e Giacomo e Domenico;
+  - invito alla drink list ("Drink list" gigante sopra la foto);
+  - di nuovo la fascia;
+  - fondo pagina su foto con Il luogo e il logo completo.
+- `assets/foto/`: foto segnaposto grigie (`apertura`, `trio-1..3`, `giacomo`, `domenico`, `drink`, `fondo`). Dopo il 2 novembre si sostituiscono con le foto vere, stessi nomi. Per le anteprime al cliente si usano le sue ispirazioni, mai committate perché non sono nostre.
+- `site.js`: costruisce la fascia che scorre, rende piena la barra dopo l'apertura, apre/chiude il menu (anche con Esc).
+- `drink/`: pagina della drink list con i prezzi (ci arriva il QR).
+  - In alto "Drink list" gigante sopra una foto, poi la fascia e la barra delle categorie fissa.
   - Il contenuto sta in `drink/menu.js`, che per ora ha voci di esempio e `anteprima: true`.
-  - Barra delle categorie fissa sotto la barra del sito.
   - Legenda dei 14 allergeni (Reg. UE 1169/2011) e coperto.
 - `style.css`: grafica comune alle pagine.
 - `tools/genera_qr.py`: crea il QR in SVG (libreria segno) con `marchio.svg` al centro e correzione d'errore H. Le prove di lettura con OpenCV vanno bene fino a 110 px.
@@ -89,7 +114,7 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Scelta tra le tre direzioni creative (A, B, C) ed eventuali commenti. Mood fotografico ricevuto: flash, mani, rossi e ambre.
+1. Commenti sulla nuova grafica nata dalle sue ispirazioni (Sifón senza copiarlo).
 2. Drink list vera: drink, prezzi, coperto, allergeni.
 3. Come gestire i contatti (per ora: telefono per prenotare).
 4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).

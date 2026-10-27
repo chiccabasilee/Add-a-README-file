@@ -4,108 +4,125 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Black Sheep · Cocktail &amp; Food Lab · Menfi</title>
-  <meta name="description" content="Black Sheep, cocktail &amp; food lab a Menfi. Aperitivo tutti i giorni e la drink card di Giacomo. Via Calogero Ognibene 30/32.">
+  <meta name="description" content="Black Sheep, cocktail &amp; food lab a Menfi. Aperitivo tutti i giorni, la drink card di Giacomo e un menu food che cambia ogni settimana.">
   <meta name="theme-color" content="#0d0d0d">
   <meta property="og:title" content="Black Sheep · Cocktail &amp; Food Lab · Menfi">
   <meta property="og:description" content="Uscire dagli schemi, un drink alla volta. Menfi.">
   <meta property="og:image" content="assets/og.png">
   <link rel="icon" href="assets/marchio.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" href="assets/fonts/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/oswald-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-variabile.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="nav">
     <div class="wrap nav__inner">
-      <a class="nav__brand" href="./" aria-label="Black Sheep, home">
-        <img src="assets/logo-scritta-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="193" height="40">
-      </a>
-      <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="panel">
-        <span></span><span></span><span></span>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="panel">
+        <span class="nav__burger" aria-hidden="true"><span></span><span></span><span></span></span> Menu
       </button>
-      <div class="nav__panel" id="panel">
-        <nav class="nav__links" aria-label="Pagine">
+      <a class="nav__brand" href="./" aria-label="Black Sheep, home">
+        <img src="assets/logo-scritta-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="145" height="30">
+      </a>
+      <a class="nav__book arc" href="tel:+393297730197">Prenota</a>
+    </div>
+    <div class="nav__panel" id="panel">
+      <nav class="nav__links" aria-label="Pagine">
           <a href="./" aria-current="page">Home</a>
-          <a href="storia/">Storia</a>
+          <a href="#storia">La storia</a>
           <a href="drink/">Drink list</a>
-        </nav>
-        <div class="nav__extra">
-          <a class="btn btn--solid" href="tel:+393297730197">Prenota · 329 773 0197</a>
-          <a class="btn" href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a>
-        </div>
+      </nav>
+      <div class="nav__foot">
+        <a class="label arc" href="tel:+393297730197">Prenota · 329 773 0197</a>
+        <a class="label" href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a>
+        <span class="label" style="color:var(--grigio)">Via Calogero Ognibene 30/32 · Menfi</span>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero slate">
-      <div class="tape tape--cross" data-text="Black Sheep — Cocktail &amp; Food Lab">Black Sheep — Cocktail &amp; Food Lab</div>
-      <div class="tape tape--cross tape--rev" data-text="Uscire dagli schemi, un drink alla volta">Uscire dagli schemi, un drink alla volta</div>
+    <section class="hero">
+      <img class="hero__img" src="assets/foto/apertura.jpg" alt="">
       <div class="hero__inner">
-        <h1>
-          <img class="hero__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995">
-        </h1>
-        <p class="hero__claim">Aperitivo tutti i giorni · Menfi</p>
+        <h1><img class="hero__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995"></h1>
+        <p class="serif hero__line">Cocktail fatti bene, dal pomeriggio in poi.</p>
+        <p class="label" style="margin-top:14px">Menfi · Aperitivo tutti i giorni</p>
       </div>
     </section>
+
+    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi" data-icon="assets/logo-testa.svg">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
 
     <section class="section">
       <div class="wrap">
-        <div class="cards">
-          <a class="card" href="storia/">
-            <span class="card__title">La storia</span>
-            <span class="card__text">Uscire dagli schemi. E chi c'è dietro al banco.</span>
-            <span class="card__go">Leggi →</span>
-          </a>
-          <a class="card card--solid" href="drink/">
-            <span class="card__title">Drink list</span>
-            <span class="card__text">La drink card di Giacomo, aggiornata spesso.</span>
-            <span class="card__go">Apri →</span>
-          </a>
+        <div class="intro">
+          <div>
+            <h2 class="statement">Uscire dagli schemi, <span class="arc">un drink</span> alla volta.</h2>
+            <p class="serif">Non il solito aperitivo.</p>
+            <div class="text">
+              <p>Aperitivo tutti i giorni, una drink card che Giacomo cambia spesso e una cucina che ogni settimana prova qualcosa di nuovo. Il resto lo fanno le persone intorno al banco.</p>
+            </div>
+          </div>
+          <p class="statement intro__side">Ogni settimana un menu food diverso. Ogni settimana una scusa per tornare.</p>
+        </div>
+
+        <div class="trio">
+          <figure><img src="assets/foto/trio-1.jpg" alt="" loading="lazy"><figcaption>Il Negroni, come si deve.</figcaption></figure>
+          <figure><img src="assets/foto/trio-2.jpg" alt="" loading="lazy"><figcaption>Shakerato, filtrato, servito. Niente scorciatoie.</figcaption></figure>
+          <figure><img src="assets/foto/trio-3.jpg" alt="" loading="lazy"><figcaption>Il food cambia ogni settimana: chiedi cosa c'è.</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <div class="tapes" aria-hidden="true">
-      <div class="tape" data-text="Aperitivo tutti i giorni — Cocktail &amp; Food Lab — Menfi">Aperitivo tutti i giorni</div>
-      <div class="tape tape--rev" data-text="Stand out like a Black Sheep">Stand out like a Black Sheep</div>
-    </div>
+    <section class="section" id="storia" style="padding-top:0">
+      <div class="wrap">
+        <p class="label" style="margin-bottom:22px">La storia</p>
+        <h2 class="mega story__head">Uscire<br>dagli<br>schemi</h2>
+        <div class="story__body">
+          <div class="text">
+            <p>Black Sheep nasce da qui. Da queste parti la mixology è ancora agli inizi, e a noi piace l'idea di essere i primi a cambiare le cose.</p>
+            <p>Qui un drink non si beve e basta: si vive. Ricerca, creatività, gusto, e tante belle persone intorno al banco.</p>
+          </div>
+          <div>
+            <p class="serif">Perché Black Sheep?</p>
+            <div class="text"><p>Perché essere la pecora nera è una scelta. Prendere un'altra strada, fare le cose a modo nostro, e non avere nessuna paura di farsi notare.</p></div>
+          </div>
+        </div>
+
+        <div class="people">
+          <figure><img src="assets/foto/giacomo.jpg" alt="Ritratto di Giacomo" loading="lazy"><figcaption><span class="mega">Giacomo</span></figcaption></figure>
+          <figure><img src="assets/foto/domenico.jpg" alt="Ritratto di Domenico" loading="lazy"><figcaption><span class="mega">Domenico</span></figcaption></figure>
+        </div>
+        <div class="text people__note">
+          <p>Dietro al banco c'è Giacomo, con anni di bottiglie alle spalle: la drink card la cambia lui, ogni volta che ha qualcosa di nuovo da farti provare. Quest'anno al suo fianco c'è Domenico.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <h2 class="mega">Drink<br>list</h2>
+        <img class="cta__img" src="assets/foto/drink.jpg" alt="" loading="lazy">
+        <div class="cta__foot">
+          <p class="serif">Prezzi, ingredienti e le novità di Giacomo.</p>
+          <a class="arc" href="drink/">Guarda la drink list →</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi" data-icon="assets/logo-testa.svg">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
   </main>
 
-  <section class="place" aria-labelledby="luogo">
-    <div class="wrap place__inner">
-      <div>
-        <p class="eyebrow" id="luogo">Il luogo</p>
-        <h2 class="place__title"><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero<br>Ognibene 30/32<br>Menfi</a></h2>
-        <div class="story story--wide">
-          <p>Antracite, pareti verdi e una griglia di alluminio che corre sopra il bancone e tiene su le piante.</p>
-        </div>
-      </div>
-      <dl class="facts">
-        <div>
-          <dt>Quando</dt>
-          <dd>Aperitivo tutti i giorni<br><span class="todo">orari da inserire</span></dd>
-        </div>
-        <div>
-          <dt>Prenota</dt>
-          <dd><a href="tel:+393297730197">329 773 0197</a></dd>
-        </div>
-        <div>
-          <dt>Seguici</dt>
-          <dd><a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">@black_sheep_menfi</a></dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-
   <footer class="foot">
+    <img class="foot__img" src="assets/foto/fondo.jpg" alt="" loading="lazy">
     <div class="wrap foot__inner">
-      <img class="foot__logo" src="assets/logo-scritta.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2139" height="444">
-      <div class="foot__text">
-        <p>Via Calogero Ognibene 30/32, Menfi — <a href="tel:+393297730197">329 773 0197</a> — <a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">Instagram</a></p>
-        <p class="foot__small">© 2026 Black Sheep · P.IVA da inserire</p>
-      </div>
+      <p class="label" style="margin-bottom:28px">Il luogo</p>
+      <dl class="foot__facts">
+        <div><dt class="label">Dove</dt><dd><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32<br>92013 Menfi (AG)</a></dd></div>
+        <div><dt class="label">Quando</dt><dd>Aperitivo tutti i giorni<br><span class="todo">orari da inserire</span></dd></div>
+        <div><dt class="label">Prenota</dt><dd><a href="tel:+393297730197">329 773 0197</a></dd></div>
+        <div><dt class="label">Seguici</dt><dd><a href="https://www.instagram.com/black_sheep_menfi/" target="_blank" rel="noopener">@black_sheep_menfi</a></dd></div>
+      </dl>
+      <img class="foot__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995" loading="lazy">
+      <div class="foot__small"><span>© 2026 Black Sheep · Cocktail &amp; Food Lab</span><span>P.IVA <span class="todo">da inserire</span></span></div>
     </div>
   </footer>
 
