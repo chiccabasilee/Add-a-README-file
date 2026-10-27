@@ -1,5 +1,6 @@
 // Contenuto della drink list. Per aggiornare un piatto o un prezzo basta modificare questo file.
 // allergeni: numeri della legenda in fondo alla pagina (Reg. UE 1169/2011).
+// preferito: true aggiunge l'adesivo "Il preferito di Giacomo".
 
 window.MENU = {
   anteprima: true, // mettere false quando il menù è quello definitivo
@@ -15,7 +16,7 @@ window.MENU = {
           nome: "Signature",
           nota: "I nostri drink, creati al banco",
           voci: [
-            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00" },
+            { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00", preferito: true },
             { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00" },
             { nome: "Nome cocktail", descrizione: "Ingrediente, ingrediente, guarnizione", prezzo: "0,00" }
           ]

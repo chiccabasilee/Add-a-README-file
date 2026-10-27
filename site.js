@@ -1,8 +1,11 @@
 (function () {
+  document.documentElement.classList.add("js");
+  var base = new URL(".", document.currentScript.src).href;
+  var calmo = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Fascia che scorre: le frasi sono ripetute due volte di fila, così lo scorrimento non ha stacchi
   document.querySelectorAll(".band[data-items]").forEach(function (band) {
     var items = band.getAttribute("data-items").split("|");
-    var icon = band.getAttribute("data-icon");
     var track = document.createElement("div");
     track.className = "band__track";
     track.setAttribute("aria-hidden", "true");
@@ -11,7 +14,7 @@
         var item = document.createElement("span");
         item.className = "band__item";
         var img = document.createElement("img");
-        img.src = icon;
+        img.src = base + "assets/logo-testa.svg";
         img.alt = "";
         item.appendChild(img);
         item.appendChild(document.createTextNode(text));
@@ -21,6 +24,47 @@
     band.textContent = "";
     band.appendChild(track);
   });
+
+  // Titoli giganti: ogni riga entra dal basso, dentro una maschera
+  document.querySelectorAll(".mega").forEach(function (el) {
+    el.innerHTML = el.innerHTML.split(/<br\s*\/?>/i).map(function (riga) {
+      return '<span class="riga"><span>' + riga.trim() + "</span></span>";
+    }).join("");
+  });
+
+  // Scarabocchi: l'SVG viene inserito nella pagina, così il tratto si può disegnare
+  var disegna = function (el) {
+    var paths = el.querySelectorAll("path");
+    paths.forEach(function (p, i) {
+      var len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = calmo ? 0 : len;
+      p.style.transition = "stroke-dashoffset " + Math.min(1.2, .4 + len / 900) + "s ease " + (.25 + i * .18) + "s";
+    });
+  };
+  var caricati = Array.prototype.map.call(document.querySelectorAll("[data-doodle]"), function (el) {
+    el.classList.add("doodle");
+    return fetch(base + "assets/scarabocchi/" + el.getAttribute("data-doodle") + ".svg")
+      .then(function (r) { return r.text(); })
+      .then(function (svg) { el.innerHTML = svg; disegna(el); });
+  });
+
+  // Quando un elemento entra nello schermo: testi che salgono, scarabocchi che si disegnano
+  var mostra = function (el) {
+    el.classList.add("in");
+    el.querySelectorAll("path").forEach(function (p) { p.style.strokeDashoffset = 0; });
+  };
+  var osservati = document.querySelectorAll("[data-reveal], .mega, .nota, [data-doodle]");
+  if (calmo || !("IntersectionObserver" in window)) {
+    Promise.all(caricati).then(function () { osservati.forEach(mostra); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { mostra(e.target); io.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -12% 0px" });
+    Promise.all(caricati).then(function () { osservati.forEach(function (el) { io.observe(el); }); });
+  }
 
   // Barra in alto: diventa piena dopo l'apertura; menu ad hamburger a tutto schermo
   var nav = document.querySelector(".nav");

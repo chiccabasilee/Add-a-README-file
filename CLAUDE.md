@@ -36,13 +36,15 @@
   - fondo scuro uniforme e foto flash a tutta pagina;
   - titoli giganti in un bastone larghissimo e nerissimo;
   - frasi grandi in maiuscolo leggero;
-  - una riga in corsivo serif;
+  - una riga "parlata" in corsivo;
   - tre foto con didascalia;
   - fondo pagina su foto.
 - **Cosa la rende nostra**:
   - in apertura c'è il **logo completo** a mano, non una scritta tipografica;
-  - **gli archi a pennello del logo** (`assets/archi.svg`, `archi-bianco.svg`, estratti dal logo) fanno da segno a mano: racchiudono parole e pulsanti, come le parentesi tonde (classe `.arc`), invece dell'ellisse disegnata di Sifón;
-  - la **fascia che scorre** è bianca, con la testa della pecora come separatore;
+  - **gli archi a pennello del logo**, in **verde fluo** e **accorciati** (`assets/archi-fluo.svg`, la parte centrale degli archi), fanno da segno a mano: racchiudono parole e pulsanti come parentesi tonde (classe `.arc`), invece dell'ellisse di Sifón. Gli originali `archi.svg` e `archi-bianco.svg` restano;
+  - la **fascia che scorre** è verde fluo, con la testa della pecora nera come separatore;
+  - **scarabocchi a mano in verde fluo** sopra le foto e accanto ai testi, ispirati alle immagini del cliente con disegni a pennarello. Sono in `assets/scarabocchi/`, creati da `tools/genera_scarabocchi.py`: freccia, aureola, gocce, fiamme, stelle, shaker (Giacomo), coppa, cerchio, sottolineatura, pecorella (illustrazione, non il logo). Si mettono con `<span data-doodle="nome" style="posizione">` e si disegnano quando entrano nello schermo;
+  - **note scritte** in corsivo fluo (classe `.nota`, per esempio "il capo del banco", "new entry!") e l'adesivo **"Il preferito di Giacomo"** (classe `.sticker`; nella drink list basta `preferito: true` in `drink/menu.js`);
   - frasi e testi sono nostri: niente traduzioni delle frasi di Sifón o Cantine.
 ## Identità visiva
 - **Logo nuovo** "Black Sheep · Cocktail & Food Lab", vettoriale, in `assets/`:
@@ -73,11 +75,11 @@
     - solo testa: usi piccoli e "da firma" (icona del browser, QR, timbri, sottobicchieri, adesivi, ghiaccio stampato).
   - **Colori del logo approvati**: nero e bianco sono i colori principali; anche l'antracite, che è il colore di tutto il locale.
   - Da chiarire: come va usata la pecora intera di profilo (personaggio/illustrazione, mai come secondo marchio).
-- **Colori**: nero `#0D0D0D` (barra, menu, fondo pagina), antracite `#171717` (sfondo delle pagine), antracite chiaro `#262626`, bianco `#F4F4F2` (testi e fascia), grigio `#8C8C88` (testi secondari). Niente colori d'accento: il colore arriva dalle foto.
+- **Colori**: nero `#0D0D0D` (barra, menu, fondo pagina), antracite `#171717` (sfondo delle pagine), antracite chiaro `#262626`, bianco `#F4F4F2` (testi), grigio `#8C8C88` (testi secondari), **verde fluo `#39FF14`** come unico accento (archi, scarabocchi, note, adesivi, fascia).
   - Antracite misurata sulle superfici del locale: ardesia `#4c4c4c` in originale, `#353535` scurita del 30%. Il verde delle pareti non è ancora misurato.
 - **Font** (ospitati in `assets/fonts/`, licenza OFL, nessuna richiesta a Google):
   - **Archivo** variabile per tutto: titoli giganti in larghezza 125% e peso 900, frasi in maiuscolo peso 300, testi peso 400.
-  - **Instrument Serif corsivo** solo per una riga per sezione.
+  - **Archivo corsivo** (`archivo-variabile-corsivo.woff2`) per la riga "parlata" di ogni sezione (classe `.voce`) e per le note. **Niente serif**: il cliente li ha esclusi.
   - Oswald 600 resta solo per l'animazione `motion/`; Inter e Oswald 500 solo per la tavola `brand/analisi-logo`.
 - **Texture**: `assets/ardesia.jpg` (ardesia scurita, piastrella specchiata) resta per la foto profilo Instagram; il nuovo sito non la usa.
 
@@ -97,7 +99,14 @@
   - di nuovo la fascia;
   - fondo pagina su foto con Il luogo e il logo completo.
 - `assets/foto/`: foto segnaposto grigie (`apertura`, `trio-1..3`, `giacomo`, `domenico`, `drink`, `fondo`). Dopo il 2 novembre si sostituiscono con le foto vere, stessi nomi. Per le anteprime al cliente si usano le sue ispirazioni, mai committate perché non sono nostre.
-- `site.js`: costruisce la fascia che scorre, rende piena la barra dopo l'apertura, apre/chiude il menu (anche con Esc).
+- `site.js`:
+  - costruisce la fascia che scorre;
+  - anima i testi: i titoli giganti salgono riga per riga, gli elementi con `data-reveal` entrano dal basso;
+  - inserisce e disegna gli scarabocchi;
+  - rende piena la barra dopo l'apertura e apre/chiude il menu (anche con Esc).
+  - Chi ha "riduci movimento" attivo vede tutto fermo.
+  - Una riga nel `<head>` di ogni pagina aggiunge la classe `js`, così i testi da animare non lampeggiano.
+- Anteprime per il cliente: il sito **non** va pubblicato come artefatto (nome e logo di un'attività reale). Per mostrare le animazioni si registra un video dello scorrimento con Playwright (`recordVideo`) e ffmpeg, su una copia nella scratchpad con le foto d'ispirazione.
 - `drink/`: pagina della drink list con i prezzi (ci arriva il QR).
   - In alto "Drink list" gigante sopra una foto, poi la fascia e la barra delle categorie fissa.
   - Il contenuto sta in `drink/menu.js`, che per ora ha voci di esempio e `anteprima: true`.
@@ -114,7 +123,7 @@
   - `instagram-profilo-chiara.png` è la stessa con la texture originale.
 
 ## Cosa manca dal cliente
-1. Commenti sulla nuova grafica nata dalle sue ispirazioni (Sifón senza copiarlo).
+1. Commenti sulla versione con archi fluo, scarabocchi e animazioni (mandata come video). Il cliente vuole cambiare alcune frasi: chiedere quali.
 2. Drink list vera: drink, prezzi, coperto, allergeni.
 3. Come gestire i contatti (per ora: telefono per prenotare).
 4. Conferma del testo della storia e dettagli su Giacomo e Domenico (dopo l'intervista del 2 novembre).

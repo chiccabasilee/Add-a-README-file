@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/archivo-variabile.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
   <header class="nav">
@@ -42,32 +43,36 @@
   <main>
     <section class="hero">
       <img class="hero__img" src="assets/foto/apertura.jpg" alt="">
+      <span data-doodle="stelle" style="width:clamp(56px,9vw,110px);height:clamp(56px,9vw,110px);right:12%;top:18%"></span>
       <div class="hero__inner">
         <h1><img class="hero__logo" src="assets/logo-bianco.svg" alt="Black Sheep · Cocktail &amp; Food Lab" width="2143" height="1995"></h1>
-        <p class="serif hero__line">Cocktail fatti bene, dal pomeriggio in poi.</p>
+        <p class="voce hero__line">Cocktail fatti bene, dal pomeriggio in poi.</p>
         <p class="label" style="margin-top:14px">Menfi · Aperitivo tutti i giorni</p>
       </div>
     </section>
 
-    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi" data-icon="assets/logo-testa.svg">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
+    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
 
     <section class="section">
       <div class="wrap">
         <div class="intro">
           <div>
-            <h2 class="statement">Uscire dagli schemi, <span class="arc">un drink</span> alla volta.</h2>
-            <p class="serif">Non il solito aperitivo.</p>
-            <div class="text">
+            <h2 class="statement" data-reveal>Uscire dagli schemi, <span class="arc">un drink</span> alla volta.</h2>
+            <p class="voce" data-reveal>Non il solito aperitivo.</p>
+            <div class="text" data-reveal>
               <p>Aperitivo tutti i giorni, una drink card che Giacomo cambia spesso e una cucina che ogni settimana prova qualcosa di nuovo. Il resto lo fanno le persone intorno al banco.</p>
             </div>
           </div>
-          <p class="statement intro__side">Ogni settimana un menu food diverso. Ogni settimana una scusa per tornare.</p>
+          <div class="intro__side has-doodle">
+            <p class="statement" data-reveal>Ogni settimana un menu food diverso. Ogni settimana una scusa per tornare.</p>
+            <span data-doodle="pecorella" style="width:clamp(70px,9vw,120px);height:clamp(70px,9vw,120px);right:0;bottom:-58%"></span>
+          </div>
         </div>
 
         <div class="trio">
-          <figure><img src="assets/foto/trio-1.jpg" alt="" loading="lazy"><figcaption>Il Negroni, come si deve.</figcaption></figure>
-          <figure><img src="assets/foto/trio-2.jpg" alt="" loading="lazy"><figcaption>Shakerato, filtrato, servito. Niente scorciatoie.</figcaption></figure>
-          <figure><img src="assets/foto/trio-3.jpg" alt="" loading="lazy"><figcaption>Il food cambia ogni settimana: chiedi cosa c'è.</figcaption></figure>
+          <figure class="has-doodle" data-reveal><img src="assets/foto/trio-1.jpg" alt="" loading="lazy"><span data-doodle="aureola" style="width:62%;height:16%;left:14%;top:30%"></span><p class="nota" style="left:8%;top:12%">santo subito.</p><figcaption>Il Negroni, come si deve.</figcaption></figure>
+          <figure class="has-doodle" data-reveal><img src="assets/foto/trio-2.jpg" alt="" loading="lazy"><span data-doodle="gocce" style="width:46%;height:26%;left:30%;top:52%"></span><figcaption>Shakerato, filtrato, servito. Niente scorciatoie.</figcaption></figure>
+          <figure class="has-doodle" data-reveal><img src="assets/foto/trio-3.jpg" alt="" loading="lazy"><span data-doodle="fiamme" style="width:40%;height:30%;right:8%;top:8%"></span><p class="nota" style="left:8%;top:62%">ogni settimana<br>una novità</p><figcaption>Il food cambia ogni settimana: chiedi cosa c'è.</figcaption></figure>
         </div>
       </div>
     </section>
@@ -75,23 +80,26 @@
     <section class="section" id="storia" style="padding-top:0">
       <div class="wrap">
         <p class="label" style="margin-bottom:22px">La storia</p>
-        <h2 class="mega story__head">Uscire<br>dagli<br>schemi</h2>
+        <div class="has-doodle story__head">
+          <h2 class="mega">Uscire<br>dagli<br>schemi</h2>
+          <span data-doodle="sottolinea" style="width:min(70%,760px);height:clamp(28px,4vw,52px);left:0;bottom:-6%"></span>
+        </div>
         <div class="story__body">
-          <div class="text">
+          <div class="text" data-reveal>
             <p>Black Sheep nasce da qui. Da queste parti la mixology è ancora agli inizi, e a noi piace l'idea di essere i primi a cambiare le cose.</p>
             <p>Qui un drink non si beve e basta: si vive. Ricerca, creatività, gusto, e tante belle persone intorno al banco.</p>
           </div>
-          <div>
-            <p class="serif">Perché Black Sheep?</p>
+          <div data-reveal>
+            <p class="voce">Perché Black Sheep?</p>
             <div class="text"><p>Perché essere la pecora nera è una scelta. Prendere un'altra strada, fare le cose a modo nostro, e non avere nessuna paura di farsi notare.</p></div>
           </div>
         </div>
 
         <div class="people">
-          <figure><img src="assets/foto/giacomo.jpg" alt="Ritratto di Giacomo" loading="lazy"><figcaption><span class="mega">Giacomo</span></figcaption></figure>
-          <figure><img src="assets/foto/domenico.jpg" alt="Ritratto di Domenico" loading="lazy"><figcaption><span class="mega">Domenico</span></figcaption></figure>
+          <figure data-reveal><img src="assets/foto/giacomo.jpg" alt="Ritratto di Giacomo" loading="lazy"><span data-doodle="shaker" style="width:22%;height:28%;right:6%;top:6%"></span><p class="nota" style="right:24%;top:10%">il capo<br>del banco</p><figcaption><span class="mega">Giacomo</span></figcaption></figure>
+          <figure data-reveal><img src="assets/foto/domenico.jpg" alt="Ritratto di Domenico" loading="lazy"><span data-doodle="stelle" style="width:24%;height:20%;right:8%;top:8%"></span><p class="nota" style="right:30%;top:12%">new entry!</p><figcaption><span class="mega">Domenico</span></figcaption></figure>
         </div>
-        <div class="text people__note">
+        <div class="text people__note" data-reveal>
           <p>Dietro al banco c'è Giacomo, con anni di bottiglie alle spalle: la drink card la cambia lui, ogni volta che ha qualcosa di nuovo da farti provare. Quest'anno al suo fianco c'è Domenico.</p>
         </div>
       </div>
@@ -101,21 +109,22 @@
       <div class="wrap">
         <h2 class="mega">Drink<br>list</h2>
         <img class="cta__img" src="assets/foto/drink.jpg" alt="" loading="lazy">
-        <div class="cta__foot">
-          <p class="serif">Prezzi, ingredienti e le novità di Giacomo.</p>
+        <div class="cta__foot has-doodle">
+          <p class="voce" data-reveal>Prezzi, ingredienti e le novità di Giacomo.</p>
           <a class="arc" href="drink/">Guarda la drink list →</a>
+          <span data-doodle="freccia" style="width:clamp(70px,10vw,130px);height:clamp(70px,10vw,130px);right:clamp(230px,24vw,330px);top:-110%"></span>
         </div>
       </div>
     </section>
 
-    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi" data-icon="assets/logo-testa.svg">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
+    <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
   </main>
 
   <footer class="foot">
     <img class="foot__img" src="assets/foto/fondo.jpg" alt="" loading="lazy">
     <div class="wrap foot__inner">
       <p class="label" style="margin-bottom:28px">Il luogo</p>
-      <dl class="foot__facts">
+      <dl class="foot__facts" data-reveal>
         <div><dt class="label">Dove</dt><dd><a href="https://maps.google.com/?q=Via+Calogero+Ognibene+30,+92013+Menfi+AG" target="_blank" rel="noopener">Via Calogero Ognibene 30/32<br>92013 Menfi (AG)</a></dd></div>
         <div><dt class="label">Quando</dt><dd>Aperitivo tutti i giorni<br><span class="todo">orari da inserire</span></dd></div>
         <div><dt class="label">Prenota</dt><dd><a href="tel:+393297730197">329 773 0197</a></dd></div>

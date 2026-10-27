@@ -13,6 +13,7 @@
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
   <link rel="preload" href="../assets/fonts/archivo-variabile.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../style.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body class="page-drink">
   <p class="preview" id="preview" hidden>Anteprima — drink list di esempio</p>
@@ -42,15 +43,17 @@
 
   <main>
     <section class="dhead">
-      <div class="wrap">
+      <div class="wrap has-doodle">
         <h1 class="mega">Drink<br>list</h1>
+        <span data-doodle="coppa" style="width:clamp(70px,14vw,170px);height:clamp(70px,14vw,170px);right:4%;top:0"></span>
+        <p class="nota" style="right:clamp(70px,18vw,220px);top:clamp(20px,5vw,60px)">cin cin!</p>
         <img class="dhead__img" src="../assets/foto/drink.jpg" alt="">
         <div class="dhead__foot">
-          <p class="serif">La drink card di Giacomo, aggiornata spesso.</p>
-          <p class="label" style="color:var(--grigio)">Prezzi in euro</p>
+          <p class="voce">La drink card di Giacomo, aggiornata spesso.</p>
+          <p class="label" style="color:var(--grigio)">Prezzi in euro · <span class="sticker">Il preferito di Giacomo</span> = da provare</p>
         </div>
       </div>
-      <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi" data-icon="../assets/logo-testa.svg">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
+      <div class="band" data-items="Ogni settimana un menu food diverso|Aperitivo tutti i giorni|La drink card di Giacomo|Via Calogero Ognibene, Menfi">Ogni settimana un menu food diverso — Aperitivo tutti i giorni — La drink card di Giacomo</div>
     </section>
 
   <nav class="tabs" id="tabs" aria-label="Categorie del menù"></nav>

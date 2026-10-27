@@ -41,6 +41,7 @@
         var head = el("div", "item__head");
         var name = el("span", "item__name", v.nome);
         if (v.surgelato) name.appendChild(el("span", "item__frozen", "*"));
+        if (v.preferito) name.appendChild(el("span", "sticker", "Il preferito di Giacomo"));
         head.appendChild(name);
         head.appendChild(el("span", "item__price", "€ " + v.prezzo));
         li.appendChild(head);
